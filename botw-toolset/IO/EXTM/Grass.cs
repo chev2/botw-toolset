@@ -1,10 +1,4 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
-
-namespace BOTWToolset.IO.EXTM
+﻿namespace BOTWToolset.IO.EXTM
 {
     /// <summary>
     /// Stores info on grass data in an .extm file

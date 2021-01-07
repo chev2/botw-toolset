@@ -2,7 +2,6 @@
 using System;
 using System.IO;
 using System.Linq;
-using System.Windows;
 
 namespace BOTWToolset.IO.TSCB
 {
@@ -72,8 +71,9 @@ namespace BOTWToolset.IO.TSCB
 
                             if (next_val == 1) //if the next value is extra unneeded info
                             {
-                                
-                            } else //else, if the value is valid
+
+                            }
+                            else //else, if the value is valid
                             {
                                 r.BaseStream.Seek(-4, SeekOrigin.Current);
                             }
@@ -91,7 +91,8 @@ namespace BOTWToolset.IO.TSCB
 
                         uint extra_info_len = BitConverter.ToUInt32(r.ReadBytes(4).Reverse().ToArray(), 0); //Usually 0, 4, or 8
 
-                        if (ref_extra == 4) {
+                        if (ref_extra == 4)
+                        {
                             if (extra_info_len == 8)
                             { //Skip the extra "20" after the 8, as well as the extra info
                                 areaInfo.HasGrass = true;
@@ -106,7 +107,8 @@ namespace BOTWToolset.IO.TSCB
                                 else //Else if the 2nd byte should be anything else (should always be 1)
                                     areaInfo.HasWater = true;
                             }
-                        } else //If the extra info flags aren't set, go back 4
+                        }
+                        else //If the extra info flags aren't set, go back 4
                         {
                             r.BaseStream.Seek(-4, SeekOrigin.Current);
                         }

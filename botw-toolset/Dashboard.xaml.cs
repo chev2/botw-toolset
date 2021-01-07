@@ -1,6 +1,5 @@
-﻿using BOTWToolset.IO.TSCB;
+﻿using BOTWToolset.Debugging;
 using System.Windows;
-using BOTWToolset.Debugging;
 
 namespace BOTWToolset
 {

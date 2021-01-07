@@ -1,10 +1,4 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
-
-namespace BOTWToolset.IO.EXTM
+﻿namespace BOTWToolset.IO.EXTM
 {
     /// <summary>
     /// Stores info on water data in an .extm file
@@ -23,8 +17,10 @@ namespace BOTWToolset.IO.EXTM
         public byte MaterialIndex { get => _matIndex; set => _matIndex = value; }
         private byte _matIndex;
 
-        public byte MaterialIndexChecksum {
-            get {
+        public byte MaterialIndexChecksum
+        {
+            get
+            {
                 if (_matIndex != 0)
                     return (byte)(_matIndex + 3);
                 return _matIndex;

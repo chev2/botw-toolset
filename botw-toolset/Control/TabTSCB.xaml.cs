@@ -1,7 +1,7 @@
-﻿using BOTWToolset.IO.TSCB;
+﻿using BOTWToolset.Debugging;
+using BOTWToolset.IO.TSCB;
 using Microsoft.Win32;
 using System.Windows.Controls;
-using BOTWToolset.Debugging;
 
 namespace BOTWToolset
 {
