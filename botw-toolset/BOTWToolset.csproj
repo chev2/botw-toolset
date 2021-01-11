@@ -37,6 +37,10 @@
   <ItemGroup>
     <Reference Include="System" />
     <Reference Include="System.Data" />
+    <Reference Include="System.Drawing" />
+    <Reference Include="System.Drawing.Common, Version=4.0.0.1, Culture=neutral, PublicKeyToken=cc7b13ffcd2ddd51, processorArchitecture=MSIL">
+      <HintPath>..\packages\System.Drawing.Common.5.0.0\lib\net461\System.Drawing.Common.dll</HintPath>
+    </Reference>
     <Reference Include="System.Xml" />
     <Reference Include="Microsoft.CSharp" />
     <Reference Include="System.Core" />
@@ -55,9 +59,31 @@
       <Generator>MSBuild:Compile</Generator>
       <SubType>Designer</SubType>
     </ApplicationDefinition>
+    <Compile Include="Control\TabRSTB.xaml.cs">
+      <DependentUpon>TabRSTB.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="Control\TabSARC.xaml.cs">
+      <DependentUpon>TabSARC.xaml</DependentUpon>
+    </Compile>
     <Compile Include="Control\TabTSCB.xaml.cs">
       <DependentUpon>TabTSCB.xaml</DependentUpon>
     </Compile>
+    <Page Include="Control\TabRSTB.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="Control\TabSARC.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="Control\TabYaz0.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="Control\TSCBAreaExpander.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
     <Page Include="Dashboard.xaml">
       <Generator>MSBuild:Compile</Generator>
       <SubType>Designer</SubType>
@@ -66,17 +92,31 @@
       <DependentUpon>App.xaml</DependentUpon>
       <SubType>Code</SubType>
     </Compile>
+    <Compile Include="Control\TabYaz0.xaml.cs">
+      <DependentUpon>TabYaz0.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="Control\TSCBAreaExpander.xaml.cs">
+      <DependentUpon>TSCBAreaExpander.xaml</DependentUpon>
+    </Compile>
     <Compile Include="Debugging\BOTWConsole.cs" />
+    <Compile Include="Exceptions\InvalidMagicException.cs" />
+    <Compile Include="IO\BinaryWriterBig.cs" />
+    <Compile Include="IO\BinaryReaderBig.cs" />
     <Compile Include="IO\EXTM\Grass.cs" />
-    <Compile Include="IO\EXTM\GrassColor.cs" />
     <Compile Include="IO\EXTM\Water.cs" />
-    <Compile Include="IO\EXTM\WaterColor.cs" />
+    <Compile Include="IO\GridColors.cs" />
+    <Compile Include="IO\HGHT.cs" />
+    <Compile Include="IO\MATE.cs" />
+    <Compile Include="IO\SARC\SARC.cs" />
+    <Compile Include="IO\SARC\SFAT.cs" />
+    <Compile Include="IO\SARC\SFATNode.cs" />
+    <Compile Include="IO\SARC\SFNT.cs" />
     <Compile Include="IO\TSCB\AreaInfo.cs" />
+    <Compile Include="IO\TSCB\GridConverter.cs" />
     <Compile Include="IO\TSCB\TSCB.cs" />
-    <Compile Include="IO\TSCB\TSCBInfo.cs" />
     <Compile Include="IO\TSCB\MaterialInfo.cs" />
+    <Compile Include="IO\Yaz0\Yaz0.cs" />
     <Compile Include="MathExt.cs" />
-    <Compile Include="Color.cs" />
     <Compile Include="Dashboard.xaml.cs">
       <DependentUpon>Dashboard.xaml</DependentUpon>
       <SubType>Code</SubType>
@@ -104,6 +144,7 @@
       <Generator>ResXFileCodeGenerator</Generator>
       <LastGenOutput>Resources.Designer.cs</LastGenOutput>
     </EmbeddedResource>
+    <None Include="packages.config" />
     <None Include="Properties\Settings.settings">
       <Generator>SettingsSingleFileGenerator</Generator>
       <LastGenOutput>Settings.Designer.cs</LastGenOutput>
@@ -115,5 +156,6 @@
   <ItemGroup>
     <Resource Include="Resources\Icons\*.png" />
   </ItemGroup>
+  <ItemGroup />
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
 </Project>
