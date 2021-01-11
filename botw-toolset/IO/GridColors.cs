@@ -1,4 +1,6 @@
-﻿using System.Drawing;
+﻿using System.Collections.Generic;
+using System.Windows.Media;
+using System.Windows.Media.Imaging;
 
 namespace BOTWToolset.IO
 {
@@ -7,7 +9,7 @@ namespace BOTWToolset.IO
     /// </summary>
     public class GridColors
     {
-        public static readonly Color[] GrassColors = new Color[]
+        public static readonly IList<Color> GrassColors = new Color[]
         {
             Color.FromArgb(255, 95, 142, 74), // Green grass
             Color.FromArgb(255, 255, 193, 75), // Yellow grass
@@ -19,7 +21,7 @@ namespace BOTWToolset.IO
             Color.FromArgb(255, 79, 112, 68) // Wood chips 05 leaves
         };
 
-        public static readonly Color[] WaterColors = new Color[]
+        public static readonly IList<Color> WaterColors = new Color[]
         {
             Color.FromArgb(255, 73, 137, 255), // Water
             Color.FromArgb(255, 114, 255, 210), // Hot water
@@ -31,7 +33,7 @@ namespace BOTWToolset.IO
             Color.FromArgb(255, 52, 99, 181) // Ocean
         };
 
-        public static readonly Color[] MaterialColors = new Color[]
+        public static readonly IList<Color> MaterialColors = new Color[]
         {
             Color.FromArgb(255, 45, 153, 0),    // 00 - Grass (basic)
             Color.FromArgb(255, 183, 183, 183), // 01 - Light stone - Rough rock A
@@ -124,5 +126,16 @@ namespace BOTWToolset.IO
             Color.FromArgb(255, 255, 255, 255),
             Color.FromArgb(255, 255, 255, 255)
         };
+
+        public static readonly BitmapPalette GrassPalette;
+        public static readonly BitmapPalette WaterPalette;
+        public static readonly BitmapPalette MaterialPalette;
+
+        static GridColors()
+        {
+            GrassPalette = new BitmapPalette(GrassColors);
+            WaterPalette = new BitmapPalette(WaterColors);
+            MaterialPalette = new BitmapPalette(MaterialColors);
+        }
     }
 }

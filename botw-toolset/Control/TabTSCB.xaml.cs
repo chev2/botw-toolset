@@ -25,6 +25,8 @@ namespace BOTWToolset.Control
 
         public static WriteableBitmap writeableBitmap; //used for pixel-like display
 
+        private delegate void IteratePixels(SARC sarc, int[] xyoffs, int i);
+
         public TabTSCB()
         {
             InitializeComponent();
@@ -33,7 +35,7 @@ namespace BOTWToolset.Control
             //RenderOptions.SetEdgeMode(i, EdgeMode.Unspecified);
 
             //Placeholder image
-            writeableBitmap = new WriteableBitmap(4, 4, 16, 16, PixelFormats.Rgb24, null);
+            writeableBitmap = new WriteableBitmap(4, 4, 16, 16, PixelFormats.BlackWhite, null);
 
             PixelView.Source = writeableBitmap;
             PixelView.Stretch = Stretch.Uniform;
@@ -43,7 +45,7 @@ namespace BOTWToolset.Control
         {
             PixelView.Source = null;
             writeableBitmap = null;
-            GC.Collect();
+            GC.Collect(); // Garbage collect to free memory
         }
 
         public void PixelViewBorder_MouseWheel(object sender, MouseWheelEventArgs e)
@@ -78,59 +80,146 @@ namespace BOTWToolset.Control
                 {
                     case "PixelViewMATE":
                         {
+                            BOTWConsole.Log("Setting view to texture...");
+
                             string extension = ".mate.sstera";
                             int img_size = (int)Math.Pow(2, 8 + zoom);
+                            int grid_size = 256;
 
                             ClearBitmap();
-                            writeableBitmap = new WriteableBitmap(img_size, img_size, 16, 16, PixelFormats.Rgb24, null);
+                            writeableBitmap = new WriteableBitmap(img_size, img_size, 16, 16, PixelFormats.Indexed8, GridColors.MaterialPalette);
                             PixelView.Source = writeableBitmap;
 
-                            PixelView_SetMATE(main_field_dir, extension, zoom, 256);
+                            PixelView_SetBitmap(main_field_dir, extension, zoom, (sarc, xyoffs, i) =>
+                            {
+                                MATE[] mats = MATE.FromBytes(sarc.Files[i]);
+
+                                for (int j = 0; j < mats.Length; j++)
+                                {
+                                    MATE m = mats[j];
+
+                                    int x = j % grid_size;
+                                    int y = j / grid_size;
+
+                                    // Draw pixel at the correct X, Y coordinate
+                                    Int32Rect rect = new Int32Rect(x + (xyoffs[0] * grid_size), y + (xyoffs[1] * grid_size), 1, 1);
+                                    // Use water type color + brightness adjust
+                                    byte[] color = new byte[] { m.Material0 };
+
+                                    writeableBitmap.WritePixels(rect, color, writeableBitmap.BackBufferStride, 0);
+                                }
+                            });
                         }
                         break;
                     case "PixelViewHGHT":
                         {
+                            BOTWConsole.Log("Setting view to heightmap...");
+
                             string extension = ".hght.sstera";
                             int img_size = (int)Math.Pow(2, 8 + zoom);
+                            int grid_size = 256;
 
                             ClearBitmap();
                             writeableBitmap = new WriteableBitmap(img_size, img_size, 16, 16, PixelFormats.Gray8, null);
                             PixelView.Source = writeableBitmap;
 
-                            PixelView_SetHGHT(main_field_dir, extension, zoom, 256);
+                            PixelView_SetBitmap(main_field_dir, extension, zoom, (sarc, xyoffs, i) =>
+                            {
+                                HGHT h = HGHT.FromBytes(sarc.Files[i]);
+
+                                for (int j = 0; j < h.Heights.Length; j++)
+                                {
+                                    ushort height = h.Heights[j];
+
+                                    int x = j % grid_size;
+                                    int y = j / grid_size;
+
+                                    // Draw pixel at the correct X, Y coordinate
+                                    Int32Rect rect = new Int32Rect(x + (xyoffs[0] * grid_size), y + (xyoffs[1] * grid_size), 1, 1);
+                                    // Brightness
+                                    byte brightness = (byte)(height / 65535f * 255f);
+                                    // Use water type color + brightness adjust
+                                    byte[] color = new byte[] { brightness };
+
+                                    writeableBitmap.WritePixels(rect, color, writeableBitmap.BackBufferStride, 0);
+                                }
+                            });
                         }
                         break;
                     case "PixelViewGrassEXTM":
                         {
+                            BOTWConsole.Log("Setting view to grass...");
+
                             string extension = ".grass.extm.sstera";
                             int img_size = (int)Math.Pow(2, 6 + zoom);
+                            int grid_size = 64;
 
                             ClearBitmap();
                             writeableBitmap = new WriteableBitmap(img_size, img_size, 16, 16, PixelFormats.Rgb24, null);
                             PixelView.Source = writeableBitmap;
 
-                            PixelView_SetGrassEXTM(main_field_dir, extension, zoom, 64);
+                            PixelView_SetBitmap(main_field_dir, extension, zoom, (sarc, xyoffs, i) =>
+                            {
+                                Grass[] grasses = Grass.FromBytes(sarc.Files[i]);
+
+                                for (int j = 0; j < grasses.Length; j++)
+                                {
+                                    Grass g = grasses[j];
+
+                                    int x = j % grid_size;
+                                    int y = j / grid_size;
+
+                                    // Draw pixel at the correct X, Y coordinate
+                                    Int32Rect rect = new Int32Rect(x + (xyoffs[0] * grid_size), y + (xyoffs[1] * grid_size), 1, 1);
+                                    // Brightness - clamp values so colors don't become completely muted
+                                    float brightness = (g.Height / 255f);
+                                    // Use water type color + brightness adjust
+                                    byte[] color = new byte[] { (byte)(g.R * brightness), (byte)(g.G * brightness), (byte)(g.B * brightness) };
+
+                                    writeableBitmap.WritePixels(rect, color, writeableBitmap.BackBufferStride, 0);
+                                }
+                            });
                         }
                         break;
                     case "PixelViewWaterEXTM":
                         {
+                            BOTWConsole.Log("Setting view to water...");
+
                             string extension = ".water.extm.sstera";
                             int img_size = (int)Math.Pow(2, 6 + zoom);
+                            int grid_size = 64;
 
                             ClearBitmap();
-                            writeableBitmap = new WriteableBitmap(img_size, img_size, 16, 16, PixelFormats.Rgb24, null);
+                            writeableBitmap = new WriteableBitmap(img_size, img_size, 16, 16, PixelFormats.Indexed8, GridColors.WaterPalette);
                             PixelView.Source = writeableBitmap;
 
-                            PixelView_SetWaterEXTM(main_field_dir, extension, zoom, 64);
+                            PixelView_SetBitmap(main_field_dir, extension, zoom, (sarc, xyoffs, i) =>
+                            {
+                                Water[] waters = Water.FromBytes(sarc.Files[i]);
+
+                                for (int j = 0; j < waters.Length; j++)
+                                {
+                                    Water w = waters[j];
+
+                                    int x = j % grid_size;
+                                    int y = j / grid_size;
+
+                                    // Draw pixel at the correct X, Y coordinate
+                                    Int32Rect rect = new Int32Rect(x + (xyoffs[0] * grid_size), y + (xyoffs[1] * grid_size), 1, 1);
+                                    // Use water type color + brightness adjust
+                                    byte[] color = new byte[] { w.MaterialIndex };
+
+                                    writeableBitmap.WritePixels(rect, color, writeableBitmap.BackBufferStride, 0);
+                                }
+                            });
                         }
                         break;
                 }
             }
         }
 
-        private void PixelView_SetMATE(string folder, string extension, byte zoom_level, int grid_size)
+        private void PixelView_SetBitmap(string folder, string extension, byte zoom_level, IteratePixels callback)
         {
-            BOTWConsole.Log("Setting view to texture");
             string[] ext_files = Directory.GetFiles(folder, $"5{zoom_level}*{extension}");
 
             foreach (string ext_file in ext_files)
@@ -145,143 +234,8 @@ namespace BOTWToolset.Control
                     string grid_index_str = s.SFNT.FileNames[i].Replace($"5{zoom_level}", "").Replace(extension.Replace(".sstera", ""), "").Replace(folder + "\\", "");
                     int grid_index = int.Parse(grid_index_str, System.Globalization.NumberStyles.HexNumber);
                     int[] xyoffs = GridConverter.ZCurveToXY(grid_index);
-                    MATE[] mats = MATE.FromBytes(s.Files[i]);
 
-                    for (int j = 0; j < mats.Length; j++)
-                    {
-                        MATE m = mats[j];
-
-                        int x = j % grid_size;
-                        int y = j / grid_size;
-
-                        // Draw pixel at the correct X, Y coordinate
-                        Int32Rect rect = new Int32Rect(x + (xyoffs[0] * grid_size), y + (xyoffs[1] * grid_size), 1, 1);
-                        // Get this water's color based off its material index/water type
-                        System.Drawing.Color c = GridColors.MaterialColors[m.Material0];
-                        // Use water type color + brightness adjust
-                        byte[] color = new byte[] { c.R, c.G, c.B };
-
-                        writeableBitmap.WritePixels(rect, color, writeableBitmap.BackBufferStride, 0);
-                    }
-                }
-            }
-        }
-
-        private void PixelView_SetHGHT(string folder, string extension, byte zoom_level, int grid_size)
-        {
-            BOTWConsole.Log("Setting view to heightmap");
-            string[] ext_files = Directory.GetFiles(folder, $"5{zoom_level}*{extension}");
-
-            foreach (string ext_file in ext_files)
-            {
-                byte[] yaz0_bytes = File.ReadAllBytes(Path.Combine(folder, ext_file));
-                byte[] yaz0_decomp = Yaz0.Decompress(yaz0_bytes);
-                SARC s = SARC.FromBytes(new MemoryStream(yaz0_decomp));
-
-                for (int i = 0; i < s.Files.Length; i++)
-                {
-                    // Get grid index from filename
-                    string grid_index_str = s.SFNT.FileNames[i].Replace($"5{zoom_level}", "").Replace(extension.Replace(".sstera", ""), "").Replace(folder + "\\", "");
-                    int grid_index = int.Parse(grid_index_str, System.Globalization.NumberStyles.HexNumber);
-                    int[] xyoffs = GridConverter.ZCurveToXY(grid_index);
-                    HGHT h = HGHT.FromBytes(s.Files[i]);
-
-                    for (int j = 0; j < h.Heights.Length; j++)
-                    {
-                        ushort height = h.Heights[j];
-
-                        int x = j % grid_size;
-                        int y = j / grid_size;
-
-                        // Draw pixel at the correct X, Y coordinate
-                        Int32Rect rect = new Int32Rect(x + (xyoffs[0] * grid_size), y + (xyoffs[1] * grid_size), 1, 1);
-                        // Brightness
-                        byte brightness = (byte)(height / 65535f * 255f);
-                        // Use water type color + brightness adjust
-                        byte[] color = new byte[] { brightness };
-
-                        writeableBitmap.WritePixels(rect, color, writeableBitmap.BackBufferStride, 0);
-                    }
-                }
-            }
-        }
-
-        private void PixelView_SetGrassEXTM(string folder, string extension, byte zoom_level, int grid_size)
-        {
-            BOTWConsole.Log("Setting view to grass");
-            string[] ext_files = Directory.GetFiles(folder, $"5{zoom_level}*{extension}");
-
-            foreach (string ext_file in ext_files)
-            {
-                byte[] yaz0_bytes = File.ReadAllBytes(Path.Combine(folder, ext_file));
-                byte[] yaz0_decomp = Yaz0.Decompress(yaz0_bytes);
-                SARC s = SARC.FromBytes(new MemoryStream(yaz0_decomp));
-
-                for (int i = 0; i < s.Files.Length; i++)
-                {
-                    // Get grid index from filename
-                    string grid_index_str = s.SFNT.FileNames[i].Replace($"5{zoom_level}", "").Replace(extension.Replace(".sstera", ""), "").Replace(folder + "\\", "");
-                    int grid_index = int.Parse(grid_index_str, System.Globalization.NumberStyles.HexNumber);
-                    int[] xyoffs = GridConverter.ZCurveToXY(grid_index);
-                    Grass[] grasses = Grass.FromBytes(s.Files[i]);
-
-                    for (int j = 0; j < grasses.Length; j++)
-                    {
-                        Grass g = grasses[j];
-
-                        int x = j % grid_size;
-                        int y = j / grid_size;
-
-                        // Draw pixel at the correct X, Y coordinate
-                        Int32Rect rect = new Int32Rect(x + (xyoffs[0] * grid_size), y + (xyoffs[1] * grid_size), 1, 1);
-                        // Brightness - clamp values so colors don't become completely muted
-                        float brightness = (g.Height / 255f);
-                        // Use water type color + brightness adjust
-                        byte[] color = new byte[] { (byte)(g.R * brightness), (byte)(g.G * brightness), (byte)(g.B * brightness) };
-
-                        writeableBitmap.WritePixels(rect, color, writeableBitmap.BackBufferStride, 0);
-                    }
-                }
-            }
-        }
-
-        private void PixelView_SetWaterEXTM(string folder, string extension, byte zoom_level, int grid_size)
-        {
-            BOTWConsole.Log("Setting view to water");
-            string[] ext_files = Directory.GetFiles(folder, $"5{zoom_level}*{extension}");
-
-            foreach (string ext_file in ext_files)
-            {
-                byte[] yaz0_bytes = File.ReadAllBytes(Path.Combine(folder, ext_file));
-                byte[] yaz0_decomp = Yaz0.Decompress(yaz0_bytes);
-                SARC s = SARC.FromBytes(new MemoryStream(yaz0_decomp));
-
-                for (int i = 0; i < s.Files.Length; i++)
-                {
-                    // Get grid index from filename
-                    string grid_index_str = s.SFNT.FileNames[i].Replace($"5{zoom_level}", "").Replace(extension.Replace(".sstera", ""), "").Replace(folder + "\\", "");
-                    int grid_index = int.Parse(grid_index_str, System.Globalization.NumberStyles.HexNumber);
-                    int[] xyoffs = GridConverter.ZCurveToXY(grid_index);
-                    Water[] waters = Water.FromBytes(s.Files[i]);
-
-                    for (int j = 0; j < waters.Length; j++)
-                    {
-                        Water w = waters[j];
-
-                        int x = j % grid_size;
-                        int y = j / grid_size;
-
-                        // Draw pixel at the correct X, Y coordinate
-                        Int32Rect rect = new Int32Rect(x + (xyoffs[0] * grid_size), y + (xyoffs[1] * grid_size), 1, 1);
-                        // Brightness - clamp values so colors don't become completely muted
-                        float brightness = (w.Height / 65535f).Clamp(0.2f, 0.8f);
-                        // Get this water's color based off its material index/water type
-                        System.Drawing.Color c = GridColors.WaterColors[w.MaterialIndex];
-                        // Use water type color + brightness adjust
-                        byte[] color = new byte[] { (byte)(c.R * brightness), (byte)(c.G * brightness), (byte)(c.B * brightness) };
-
-                        writeableBitmap.WritePixels(rect, color, writeableBitmap.BackBufferStride, 0);
-                    }
+                    callback(s, xyoffs, i);
                 }
             }
         }
