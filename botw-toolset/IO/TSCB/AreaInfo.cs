@@ -47,23 +47,12 @@
         public bool HasGrass { get => _hasGrass; set => _hasGrass = value; }
         private bool _hasGrass = false;
 
-        public uint Offset;
+        public uint Offset { get => _offset; set => _offset = value; }
+        private uint _offset;
 
-        public AreaInfo(float x_pos, float z_pos, float area_size, float min_terrain_height, float max_terrain_height,
-            float min_water_height, float max_water_height, uint unknown_1, uint file_base, uint unknown_2, uint unknown_3, uint ref_extra)
-        {
-            PositionX = x_pos;
-            PositionZ = z_pos;
-            AreaSize = area_size;
-            MinTerrainHeight = min_terrain_height;
-            MaxTerrainHeight = max_terrain_height;
-            MinWaterHeight = min_water_height;
-            MaxWaterHeight = max_water_height;
-            Unknown1 = unknown_1;
-            FileBase = file_base;
-            Unknown2 = unknown_2;
-            Unknown3 = unknown_3;
-            ReferenceExtra = ref_extra;
-        }
+        public uint ExtraInfoLength { get => _extraInfoLength; set => _extraInfoLength = value; }
+        private uint _extraInfoLength;
+
+        public AreaInfo() { }
     }
 }

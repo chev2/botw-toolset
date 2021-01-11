@@ -1,4 +1,6 @@
-﻿namespace BOTWToolset.IO.EXTM
+﻿using System.IO;
+
+namespace BOTWToolset.IO.EXTM
 {
     /// <summary>
     /// Stores info on grass data in an .extm file
@@ -16,5 +18,28 @@
 
         public byte B { get => _b; set => _b = value; }
         private byte _b;
+
+        public static Grass[] FromBytes(byte[] bytes)
+        {
+            using (var r = new BinaryReaderBig(new MemoryStream(bytes)))
+            {
+                Grass[] grasses = new Grass[r.BaseStream.Length / 4];
+
+                for (int i = 0; i < grasses.Length; i++)
+                {
+                    Grass g = new Grass
+                    {
+                        Height = r.ReadByte(),
+                        R = r.ReadByte(),
+                        G = r.ReadByte(),
+                        B = r.ReadByte()
+                    };
+
+                    grasses[i] = g;
+                }
+
+                return grasses;
+            }
+        }
     }
 }
