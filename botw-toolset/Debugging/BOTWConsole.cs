@@ -7,11 +7,14 @@ namespace BOTWToolset.Debugging
     static class BOTWConsole
     {
         private readonly static TextBox _console;
+        private readonly static Label _status;
         static BOTWConsole()
         {
             var dashboard = Application.Current.Windows.OfType<Dashboard>().ToArray()[0];
             var tabControl = dashboard.tabTSCB;
             _console = tabControl.TSCBConsole;
+
+            _status = dashboard.LabelStatus;
         }
 
         public static void Log(object text)
@@ -28,6 +31,11 @@ namespace BOTWToolset.Debugging
         public static void LogError(object text)
         {
             Log("[ERROR]" + text);
+        }
+
+        public static void LogStatus(object text)
+        {
+            _status.Content = text.ToString();
         }
     }
 }
