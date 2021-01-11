@@ -37,9 +37,6 @@ namespace BOTWToolset.Control
 
             PixelView.Source = writeableBitmap;
             PixelView.Stretch = Stretch.Uniform;
-
-            PixelView.MouseLeftButtonDown += new MouseButtonEventHandler(PixelView_MouseLeft);
-            //PixelViewBorder.MouseWheel += new MouseWheelEventHandler(PixelViewBorder_MouseWheel);
         }
 
         private void ClearBitmap()
@@ -47,21 +44,6 @@ namespace BOTWToolset.Control
             PixelView.Source = null;
             writeableBitmap = null;
             GC.Collect();
-        }
-
-        private void DrawPixel(MouseEventArgs e)
-        {
-
-        }
-
-        private void ErasePixel(MouseEventArgs e)
-        {
-
-        }
-
-        private void PixelView_MouseLeft(object sender, MouseButtonEventArgs e)
-        {
-            DrawPixel(e);
         }
 
         public void PixelViewBorder_MouseWheel(object sender, MouseWheelEventArgs e)
