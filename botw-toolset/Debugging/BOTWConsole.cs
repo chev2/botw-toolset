@@ -1,6 +1,8 @@
-﻿using System.Linq;
+﻿using System;
+using System.Linq;
 using System.Windows;
 using System.Windows.Controls;
+using System.Windows.Threading;
 
 namespace BOTWToolset.Debugging
 {
@@ -8,6 +10,9 @@ namespace BOTWToolset.Debugging
     {
         private readonly static TextBox _console;
         private readonly static Label _status;
+
+        private static DispatcherTimer ClearStatusTimer;
+
         static BOTWConsole()
         {
             var dashboard = Application.Current.Windows.OfType<Dashboard>().ToArray()[0];
@@ -35,7 +40,20 @@ namespace BOTWToolset.Debugging
 
         public static void LogStatus(object text)
         {
+            if (ClearStatusTimer != null)
+                ClearStatusTimer.Stop();
+
             _status.Content = text.ToString();
+
+            ClearStatusTimer = new DispatcherTimer();
+            ClearStatusTimer.Tick += ClearStatus;
+            ClearStatusTimer.Interval = new TimeSpan(0, 0, 4);
+            ClearStatusTimer.Start();
+        }
+
+        public static void ClearStatus(object src, EventArgs e)
+        {
+            _status.Content = "";
         }
     }
 }
