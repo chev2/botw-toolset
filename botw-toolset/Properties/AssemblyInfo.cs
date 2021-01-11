@@ -6,7 +6,7 @@ using System.Windows;
 // set of attributes. Change these attribute values to modify the information
 // associated with an assembly.
 [assembly: AssemblyTitle("botw-toolset")]
-[assembly: AssemblyDescription("")]
+[assembly: AssemblyDescription("A set of tools for modifying the Legend of Zelda: Breath of the Wild (Wii U).")]
 [assembly: AssemblyConfiguration("")]
 [assembly: AssemblyCompany("")]
 [assembly: AssemblyProduct("botw-toolset")]

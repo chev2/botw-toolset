@@ -1,5 +1,6 @@
 ﻿using BOTWToolset.Debugging;
 using System;
+using System.Reflection;
 using System.Windows;
 
 namespace BOTWToolset
@@ -9,7 +10,8 @@ namespace BOTWToolset
     /// </summary>
     public partial class Dashboard : Window
     {
-        public const string VERSION = "1.0.0-pre-alpha";
+        public static string VERSION = System.Diagnostics.FileVersionInfo.GetVersionInfo(Assembly.GetExecutingAssembly().Location).ProductVersion;
+
         public static string UserDesktop = Environment.GetFolderPath(Environment.SpecialFolder.Desktop);
 
         public Dashboard()
