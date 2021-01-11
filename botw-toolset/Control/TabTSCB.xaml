@@ -1,9 +1,9 @@
-﻿<UserControl x:Class="BOTWToolset.TabTSCB"
+﻿<UserControl x:Class="BOTWToolset.Control.TabTSCB"
              xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
              xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
              xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006" 
              xmlns:d="http://schemas.microsoft.com/expression/blend/2008" 
-             xmlns:local="clr-namespace:BOTWToolset"
+             xmlns:local="clr-namespace:BOTWToolset.Control"
              mc:Ignorable="d" 
              d:DesignHeight="597" d:DesignWidth="1246 " Width="Auto" Height="Auto">
     <Grid>
@@ -11,12 +11,16 @@
 
         <Menu Margin="10,58,10,0" VerticalAlignment="Top">
             <MenuItem Header="_File" Foreground="White">
-                <MenuItem x:Name="MenuFileOpen" Header="_Open" InputGestureText="Ctrl+O" Click="Menu_OpenFile"/>
-                <MenuItem x:Name="MenuFileClose" Header="_Close" Click="Menu_CloseFile"/>
-                <MenuItem x:Name="MenuFileSave" Header="_Save" InputGestureText="Ctrl+S" Click="Menu_SaveFile" IsEnabled="False"/>
+                <MenuItem x:Name="MenuFileOpen" Header="_Open" Click="Menu_FileOpen" InputGestureText="Ctrl+O"/>
+                <MenuItem x:Name="MenuFileSave" Header="_Save" Click="Menu_FileSave" InputGestureText="Ctrl+S" IsEnabled="False"/>
+                <MenuItem x:Name="MenuFileClose" Header="_Close" Click="Menu_FileClose" IsEnabled="False"/>
             </MenuItem>
         </Menu>
-        <Border BorderThickness="1" Margin="10,81,293,145"/>
+        <Border BorderThickness="1" Margin="10,81,536,145">
+            <Grid x:Name="PixelViewBorder">
+                <Image x:Name="PixelView" Margin="10"/>
+            </Grid>
+        </Border>
         <Border BorderThickness="1" Margin="0,81,10,10" HorizontalAlignment="Right" Width="278">
             <Grid>
                 <Label Content="Signature" HorizontalAlignment="Left" Margin="10,0,0,195" Width="120" Height="26" VerticalAlignment="Bottom"/>
@@ -36,10 +40,32 @@
                 <Label Content="Tile Size" HorizontalAlignment="Left" Margin="146,0,0,33" Width="120" HorizontalContentAlignment="Right" Height="26" VerticalAlignment="Bottom"/>
                 <TextBox x:Name="TileSize" x:FieldModifier="public" Margin="146,0,10,10" TextWrapping="Wrap" Text="" VerticalContentAlignment="Center" IsReadOnly="True" Height="23" VerticalAlignment="Bottom"/>
                 <Border BorderThickness="1" HorizontalAlignment="Left" Margin="10,10,0,226" Width="256">
-                    <StackPanel x:Name="TSCBAreaViewer" x:FieldModifier="public"/>
+                    <ScrollViewer VerticalScrollBarVisibility="Auto">
+                        <StackPanel x:Name="TSCBAreaViewer" x:FieldModifier="public"/>
+                    </ScrollViewer>
                 </Border>
             </Grid>
         </Border>
         <TextBox x:Name="TSCBConsole" x:FieldModifier="public" TextWrapping="Wrap" Text="" Margin="10,0,293,10" Height="130" VerticalAlignment="Bottom" UndoLimit="1" AllowDrop="False" FontFamily="Consolas" VerticalScrollBarVisibility="Auto" IsReadOnly="True"/>
+        <Border Margin="0,81,293,145" HorizontalAlignment="Right" Width="238">
+            <Grid x:Name="PixelViewTypes">
+                <Button x:Name="PixelViewMATE" Content="Texture View" Margin="10,10,10,0" Height="32" VerticalAlignment="Top" IsEnabled="False" Click="PixelView_UpdateView"/>
+                <Button x:Name="PixelViewHGHT" Content="Height View" Margin="10,47,10,0" Height="32" VerticalAlignment="Top" IsEnabled="False" Click="PixelView_UpdateView"/>
+                <Button x:Name="PixelViewGrassEXTM" Content="Grass Height View" Margin="10,84,10,0" Height="32" VerticalAlignment="Top" IsEnabled="False" Click="PixelView_UpdateView"/>
+                <Button x:Name="PixelViewWaterEXTM" Content="Water Height View" Margin="10,121,10,0" Height="32" VerticalAlignment="Top" IsEnabled="False" Click="PixelView_UpdateView"/>
+
+                <Label Content="Zoom" Margin="10,0,10,162" Height="26" VerticalAlignment="Bottom" HorizontalContentAlignment="Center"/>
+                <Slider x:Name="SliderZoomLevel" Margin="10,0,10,129" Height="28" VerticalAlignment="Bottom" Maximum="8" SmallChange="1" IsSnapToTickEnabled="True" TickPlacement="TopLeft"/>
+                
+                <Label Content="Min Terrain Height" Margin="10,0,69,103" Height="26" VerticalAlignment="Bottom"/>
+                <TextBox x:Name="OverrideMinTerrainHeight" Margin="172,0,10,103" VerticalContentAlignment="Center" Height="26" VerticalAlignment="Bottom" KeyDown="OverrideKeyDown" IsEnabled="False"/>
+                <Label Content="Max Terrain Height" Margin="10,0,69,72" Height="26" VerticalAlignment="Bottom"/>
+                <TextBox x:Name="OverrideMaxTerrainHeight" Margin="172,0,10,72" VerticalContentAlignment="Center" Height="26" VerticalAlignment="Bottom" KeyDown="OverrideKeyDown" IsEnabled="False"/>
+                <Label Content="Min Water Height" Margin="10,0,69,41" Height="26" VerticalAlignment="Bottom"/>
+                <TextBox x:Name="OverrideMinWaterHeight" Margin="172,0,10,41" VerticalContentAlignment="Center" Height="26" VerticalAlignment="Bottom" KeyDown="OverrideKeyDown" IsEnabled="False"/>
+                <Label Content="Max Water Height" Margin="10,0,69,10" Height="26" VerticalAlignment="Bottom"/>
+                <TextBox x:Name="OverrideMaxWaterHeight" Margin="172,0,10,10" VerticalContentAlignment="Center" Height="26" VerticalAlignment="Bottom"  KeyDown="OverrideKeyDown" IsEnabled="False"/>
+            </Grid>
+        </Border>
     </Grid>
 </UserControl>

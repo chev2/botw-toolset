@@ -1,0 +1,67 @@
+﻿<UserControl x:Class="BOTWToolset.Control.TabSARC"
+             xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+             xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+             xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006" 
+             xmlns:d="http://schemas.microsoft.com/expression/blend/2008" 
+             xmlns:local="clr-namespace:BOTWToolset.Control"
+             mc:Ignorable="d" 
+             d:DesignHeight="597" d:DesignWidth="1246 " Width="Auto" Height="Auto">
+    <Grid>
+        <Label Content="SARC Packer/Extractor" Margin="10,10,10,0" VerticalAlignment="Top" Height="48" FontSize="28" VerticalContentAlignment="Center" FontFamily="Segoe UI Light"/>
+
+        <Menu Margin="10,58,10,0" VerticalAlignment="Top">
+            <MenuItem Header="_File" Foreground="White">
+                <MenuItem x:Name="MenuFileOpen" Header="_Open" InputGestureText="Ctrl+O" Click="Menu_FileOpen"/>
+                <MenuItem x:Name="MenuFileSave" Header="_Save" InputGestureText="Ctrl+S" Click="Menu_FileSave" IsEnabled="False"/>
+                <MenuItem x:Name="MenuFileSaveAs" Header="_Save As" InputGestureText="Ctrl+Shift+S" Click="Menu_FileSaveAs" IsEnabled="False"/>
+                <MenuItem x:Name="MenuFileClose" Header="_Close" Click="Menu_FileClose" IsEnabled="False"/>
+            </MenuItem>
+        </Menu>
+        <Border Margin="10,81,10,10">
+            <Grid>
+                <Grid Margin="0,0,628,0">
+                    <Label x:Name="FileCount" Margin="10,10,10,0" VerticalAlignment="Top" Height="48" VerticalContentAlignment="Center" HorizontalContentAlignment="Center" FontSize="24" Content=""/>
+                    <Border Margin="10,63,10,10">
+                        <ScrollViewer VerticalScrollBarVisibility="Auto">
+                            <StackPanel x:Name="FileDisplay" HorizontalAlignment="Left" Margin="9,9,0,9" Width="556" CanVerticallyScroll="True" ScrollViewer.VerticalScrollBarVisibility="Auto"/>
+                        </ScrollViewer>
+                    </Border>
+                </Grid>
+                <Grid HorizontalAlignment="Right" Width="629">
+                    <Label Content="SARC Header" HorizontalAlignment="Left" Margin="10,10,0,0" VerticalAlignment="Top" Height="32" Width="609" FontSize="18" VerticalContentAlignment="Center"/>
+
+                    <Label Content="Magic" Margin="10,47,317,0" VerticalAlignment="Top"/>
+                    <TextBox x:Name="SARCMagic" Height="23" Margin="10,78,317,0" TextWrapping="Wrap" VerticalAlignment="Top" IsReadOnly="True" VerticalContentAlignment="Center"/>
+                    <Label Content="Header Length" Margin="317,47,10,0" VerticalAlignment="Top" HorizontalContentAlignment="Right"/>
+                    <TextBox x:Name="SARCHeaderLength" Height="23" Margin="0,78,10,0" TextWrapping="Wrap" VerticalAlignment="Top" IsReadOnly="True" VerticalContentAlignment="Center" HorizontalContentAlignment="Right" HorizontalAlignment="Right" Width="302"/>
+                    <Label Content="Uses Big Endian" Margin="10,106,317,0" VerticalAlignment="Top"/>
+                    <TextBox x:Name="SARCIsBigEndian" Height="23" Margin="10,137,317,0" TextWrapping="Wrap" VerticalAlignment="Top" IsReadOnly="True" VerticalContentAlignment="Center"/>
+                    <Label Content="File Size" Margin="317,106,10,0" VerticalAlignment="Top" HorizontalContentAlignment="Right"/>
+                    <TextBox x:Name="SARCFileSize" Height="23" Margin="0,137,10,0" TextWrapping="Wrap" VerticalAlignment="Top" IsReadOnly="True" VerticalContentAlignment="Center" HorizontalContentAlignment="Right" HorizontalAlignment="Right" Width="302"/>
+                    <Label Content="Data Offset" Margin="10,165,317,0" VerticalAlignment="Top"/>
+                    <TextBox x:Name="SARCDataOffset" Height="23" Margin="10,196,317,0" TextWrapping="Wrap" VerticalAlignment="Top" IsReadOnly="True" VerticalContentAlignment="Center"/>
+                    <Label Content="Version" Margin="317,165,10,0" VerticalAlignment="Top" HorizontalContentAlignment="Right"/>
+                    <TextBox x:Name="SARCVersion" Height="23" Margin="0,196,10,0" TextWrapping="Wrap" VerticalAlignment="Top" IsReadOnly="True" VerticalContentAlignment="Center" HorizontalContentAlignment="Right" HorizontalAlignment="Right" Width="302"/>
+
+                    <Label Content="SFAT Header" HorizontalAlignment="Left" Margin="10,224,0,0" VerticalAlignment="Top" Height="32" Width="609" FontSize="18" VerticalContentAlignment="Center"/>
+
+                    <Label Content="Magic" Margin="10,261,317,0" VerticalAlignment="Top"/>
+                    <TextBox x:Name="SFATMagic" Height="23" Margin="10,292,317,0" TextWrapping="Wrap" VerticalAlignment="Top" IsReadOnly="True" VerticalContentAlignment="Center"/>
+                    <Label Content="Header Length" Margin="317,261,10,0" VerticalAlignment="Top" HorizontalContentAlignment="Right"/>
+                    <TextBox x:Name="SFATHeaderLength" Height="23" Margin="0,292,10,0" TextWrapping="Wrap" VerticalAlignment="Top" IsReadOnly="True" VerticalContentAlignment="Center" HorizontalContentAlignment="Right" HorizontalAlignment="Right" Width="302"/>
+                    <Label Content="Node Count" Margin="10,320,317,0" VerticalAlignment="Top"/>
+                    <TextBox x:Name="SFATNodeCount" Height="23" Margin="10,351,317,0" TextWrapping="Wrap" VerticalAlignment="Top" IsReadOnly="True" VerticalContentAlignment="Center"/>
+                    <Label Content="Hash Key" Margin="317,320,10,0" VerticalAlignment="Top" HorizontalContentAlignment="Right"/>
+                    <TextBox x:Name="SFATHashKey" Height="23" Margin="0,351,10,0" TextWrapping="Wrap" VerticalAlignment="Top" IsReadOnly="True" VerticalContentAlignment="Center" HorizontalContentAlignment="Right" HorizontalAlignment="Right" Width="302"/>
+                    <Label Content="Magic" Margin="10,416,317,0" VerticalAlignment="Top"/>
+
+                    <Label Content="SFNT Header" HorizontalAlignment="Left" Margin="10,379,0,0" VerticalAlignment="Top" Height="32" Width="609" FontSize="18" VerticalContentAlignment="Center"/>
+
+                    <TextBox x:Name="SFNTMagic" Height="23" Margin="10,447,317,0" TextWrapping="Wrap" VerticalAlignment="Top" IsReadOnly="True" VerticalContentAlignment="Center"/>
+                    <Label Content="Header Length" Margin="317,416,10,0" VerticalAlignment="Top" HorizontalContentAlignment="Right"/>
+                    <TextBox x:Name="SFNTHeaderLength" Height="23" Margin="0,447,10,0" TextWrapping="Wrap" VerticalAlignment="Top" IsReadOnly="True" VerticalContentAlignment="Center" HorizontalContentAlignment="Right" HorizontalAlignment="Right" Width="302"/>
+                </Grid>
+            </Grid>
+        </Border>
+    </Grid>
+</UserControl>

@@ -3,38 +3,38 @@
         xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
         xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
         xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
-        xmlns:local="clr-namespace:BOTWToolset"
+        xmlns:local="clr-namespace:BOTWToolset.Control"
         mc:Ignorable="d"
         Title="Breath of the Wild Toolset" Height="720" Width="1280" Icon="Resources/Icons/triforce.png" MinWidth="645" MinHeight="645">
     <Grid Background="#262C35">
-        <TabControl Margin="10,10,10,41">
+        <TabControl x:Name="TabController"  Margin="10,10,10,41">
             <TabItem Header="Dashboard">
                 <Grid Background="#2C343E">
                     <Label Content="Dashboard" Margin="10,10,10,0" VerticalAlignment="Top" Height="48" FontSize="28" VerticalContentAlignment="Center" FontFamily="Segoe UI Light"/>
 
                     <Border x:Name="DashboardButtonTSCB" BorderBrush="White" HorizontalAlignment="Left" Margin="10,63,0,0" VerticalAlignment="Top" Width="250" Height="165">
-                        <Grid>
+                        <Grid MouseLeftButtonUp="TabSelect_TSCB">
                             <Image Source="Resources/Icons/mountain.png" Margin="10,10,190,0" Width="48" Height="48" VerticalAlignment="Top"/>
                             <Label Margin="63,10,10,0" VerticalContentAlignment="Center" FontSize="24" Height="48" VerticalAlignment="Top">TSCB</Label>
                             <TextBlock Text="Edits terrain scene binary files." Margin="10,63,10,10" TextWrapping="Wrap"></TextBlock>
                         </Grid>
                     </Border>
                     <Border x:Name="DashboardButtonYaz0" BorderBrush="White" HorizontalAlignment="Left" Margin="265,63,0,0" VerticalAlignment="Top" Width="250" Height="165">
-                        <Grid>
+                        <Grid MouseLeftButtonUp="TabSelect_Yaz0">
                             <Image Source="Resources/Icons/letter-z.png" Margin="10,10,190,0" Width="48" Height="48" VerticalAlignment="Top"/>
                             <Label Margin="63,10,10,0" VerticalContentAlignment="Center" FontSize="24" Height="48" VerticalAlignment="Top">Yaz0</Label>
                             <TextBlock Text="Allows compression/decompression using Yaz0 encoding." Margin="10,63,10,10" TextWrapping="Wrap"></TextBlock>
                         </Grid>
                     </Border>
                     <Border x:Name="DashboardButtonSARC" BorderBrush="White" HorizontalAlignment="Left" Margin="520,63,0,0" VerticalAlignment="Top" Width="250" Height="165">
-                        <Grid>
+                        <Grid MouseLeftButtonUp="TabSelect_SARC">
                             <Image Source="Resources/Icons/package.png" Margin="10,10,190,0" Width="48" Height="48" VerticalAlignment="Top"/>
                             <Label Margin="63,10,10,0" VerticalContentAlignment="Center" FontSize="24" Height="48" VerticalAlignment="Top">SARC</Label>
                             <TextBlock Text="Tools to unpack and pack SARC files." Margin="10,63,10,10" TextWrapping="Wrap"></TextBlock>
                         </Grid>
                     </Border>
                     <Border x:Name="DashboardButtonRSTB" BorderBrush="White" HorizontalAlignment="Left" Margin="775,63,0,0" VerticalAlignment="Top" Width="250" Height="165">
-                        <Grid>
+                        <Grid MouseLeftButtonUp="TabSelect_RSTB">
                             <Image Source="Resources/Icons/text-file.png" Margin="10,10,190,0" Width="48" Height="48" VerticalAlignment="Top"/>
                             <Label Margin="63,10,10,0" VerticalContentAlignment="Center" FontSize="24" Height="48" VerticalAlignment="Top">RSTB</Label>
                             <TextBlock Text="Allows edits to the resource table." Margin="10,63,10,10" TextWrapping="Wrap"></TextBlock>
@@ -42,14 +42,20 @@
                     </Border>
                 </Grid>
             </TabItem>
-            <TabItem Header="TSCB">
+            <TabItem x:Name="tabItemTSCB" Header="TSCB">
                 <local:TabTSCB x:Name="tabTSCB" x:FieldModifier="public"/>
             </TabItem>
-            <TabItem Header="Yaz0"></TabItem>
-            <TabItem Header="SARC"></TabItem>
-            <TabItem Header="RSTB"></TabItem>
+            <TabItem x:Name="tabItemYaz0" Header="Yaz0">
+                <local:TabYaz0 x:Name="tabYaz0" x:FieldModifier="public"/>
+            </TabItem>
+            <TabItem x:Name="tabItemSARC" Header="SARC">
+                <local:TabSARC x:Name="tabSARC" x:FieldModifier="public"/>
+            </TabItem>
+            <TabItem x:Name="tabItemRSTB" Header="RSTB">
+                <local:TabRSTB x:Name="tabRSTB" x:FieldModifier="public"/>
+            </TabItem>
         </TabControl>
-        <Label x:Name="LabelVersion" Content="" Margin="0,0,10,10" HorizontalAlignment="Right" Width="1252" Height="26" VerticalAlignment="Bottom" HorizontalContentAlignment="Right"/>
-
+        <Label x:Name="LabelStatus" Content="" Margin="10,0,215,10" Height="26" VerticalAlignment="Bottom"/>
+        <Label x:Name="LabelVersion" Content="" Margin="0,0,10,10" HorizontalAlignment="Right" Width="200" Height="26" VerticalAlignment="Bottom" HorizontalContentAlignment="Right"/>
     </Grid>
 </Window>
