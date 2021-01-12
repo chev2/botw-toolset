@@ -5,6 +5,10 @@ using System.Linq;
 
 namespace BOTWToolset.IO.SARC
 {
+    /// <summary>
+    /// Stores info on a SARC archive file.
+    /// More info found on the <see href="https://zeldamods.org/wiki/SARC">ZeldaMods wiki</see>.
+    /// </summary>
     public class SARC
     {
         //SARC header
@@ -32,6 +36,11 @@ namespace BOTWToolset.IO.SARC
 
         public byte[][] Files;
 
+        /// <summary>
+        /// Gets a <see cref="SARC"/> from a data stream.
+        /// </summary>
+        /// <param name="stream">Data stream to get <see cref="SARC"/> info from.</param>
+        /// <returns><see cref="SARC"/> with the stream's data.</returns>
         public static SARC FromBytes(Stream stream)
         {
             SARC s = new SARC();

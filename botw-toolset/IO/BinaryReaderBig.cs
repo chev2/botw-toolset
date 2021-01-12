@@ -6,7 +6,7 @@ using System.Text;
 namespace BOTWToolset.IO
 {
     /// <summary>
-    /// Big-endian variant of BinaryReader
+    /// Big-endian variant of BinaryReader.
     /// </summary>
     public class BinaryReaderBig : BinaryReader
     {

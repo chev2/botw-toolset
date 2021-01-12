@@ -7,6 +7,10 @@ using System.Linq;
 
 namespace BOTWToolset.IO.Yaz0
 {
+    /// <summary>
+    /// Interacts with Yaz0-encoded data, and allows for encoding data to Yaz0.
+    /// More info on the <see href="https://zeldamods.org/wiki/Yaz0">ZeldaMods wiki</see>.
+    /// </summary>
     public class Yaz0
     {
         public string Magic { get => _magic; set => _magic = value; }
@@ -23,6 +27,11 @@ namespace BOTWToolset.IO.Yaz0
         private static int s_num_bytes1, s_match_pos;
         private static bool s_prev_flag = false;
 
+        /// <summary>
+        /// Returns a <see cref="Yaz0"/> from a Yaz0-encoded file on disk.
+        /// </summary>
+        /// <param name="file">The file (full path) to read.</param>
+        /// <returns><see cref="Yaz0"/> containing the file's data.</returns>
         public static Yaz0 ReadFile(string file)
         {
             if (File.Exists(file))

@@ -3,7 +3,7 @@
 namespace BOTWToolset.Control
 {
     /// <summary>
-    /// Interaction logic for TabRSTB.xaml
+    /// Interaction logic for the RSTB tab.
     /// </summary>
     public partial class TabRSTB : UserControl
     {

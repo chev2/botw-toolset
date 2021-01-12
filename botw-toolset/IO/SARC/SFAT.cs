@@ -1,5 +1,8 @@
 ﻿namespace BOTWToolset.IO.SARC
 {
+    /// <summary>
+    /// Stores info on the SFAT header (SARC file allocation table), used in conjunction with <see cref="SARC"/>.
+    /// </summary>
     public struct SFAT
     {
         public string Magic { get => _magic; set => _magic = value; }

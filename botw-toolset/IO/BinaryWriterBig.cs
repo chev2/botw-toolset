@@ -6,7 +6,7 @@ using System.Text;
 namespace BOTWToolset.IO
 {
     /// <summary>
-    /// Big-endian variant of BinaryWriter
+    /// Big-endian variant of BinaryWriter.
     /// </summary>
     public class BinaryWriterBig : BinaryWriter
     {

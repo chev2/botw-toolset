@@ -16,7 +16,7 @@ using System.Windows.Media.Imaging;
 namespace BOTWToolset.Control
 {
     /// <summary>
-    /// Control tab for TSCB management
+    /// Interaction logic for the TSCB tab.
     /// </summary>
     public partial class TabTSCB : UserControl
     {

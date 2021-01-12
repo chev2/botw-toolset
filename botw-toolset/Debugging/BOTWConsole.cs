@@ -6,6 +6,9 @@ using System.Windows.Threading;
 
 namespace BOTWToolset.Debugging
 {
+    /// <summary>
+    /// Allows for printing debug info to an in-app console.
+    /// </summary>
     static class BOTWConsole
     {
         private readonly static TextBox _console;

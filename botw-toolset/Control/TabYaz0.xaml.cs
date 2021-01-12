@@ -9,7 +9,7 @@ using System.Windows.Controls;
 namespace BOTWToolset.Control
 {
     /// <summary>
-    /// Interaction logic for TabYaz0.xaml
+    /// Interaction logic for the Yaz0 tab.
     /// </summary>
     public partial class TabYaz0 : UserControl
     {

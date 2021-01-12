@@ -3,7 +3,8 @@
 namespace BOTWToolset.IO.EXTM
 {
     /// <summary>
-    /// Stores info on water data in an .extm file
+    /// Interacts with water data in an .extm file, used in conjunction with <see cref="TSCB.TSCB"/>.
+    /// More info found on the <see href="https://zeldamods.org/wiki/Water.extm">ZeldaMods wiki</see>.
     /// </summary>
     class Water
     {
@@ -29,6 +30,11 @@ namespace BOTWToolset.IO.EXTM
             }
         }
 
+        /// <summary>
+        /// Gets an array of <see cref="Water"/> from an array of bytes.
+        /// </summary>
+        /// <param name="bytes">The array of bytes to retrieve <see cref="Water"/> data from.</param>
+        /// <returns><see cref="Water"/>[] data.</returns>
         public static Water[] FromBytes(byte[] bytes)
         {
             using (var r = new BinaryReaderBig(new MemoryStream(bytes)))

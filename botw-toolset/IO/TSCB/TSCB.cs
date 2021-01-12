@@ -7,7 +7,8 @@ using System.Linq;
 namespace BOTWToolset.IO.TSCB
 {
     /// <summary>
-    /// Interacts with .tcsb files.
+    /// Interacts with .tcsb (terrain scene binary) files.
+    /// More info found on the <see href="https://zeldamods.org/wiki/TSCB">ZeldaMods wiki</see>.
     /// </summary>
     public class TSCB
     {
@@ -218,7 +219,7 @@ namespace BOTWToolset.IO.TSCB
         /// <summary>
         /// Writes TSCB data to a byte array.
         /// </summary>
-        /// <param name="tscb">TSCBInfo that contains data to write.</param>
+        /// <param name="tscb"><see cref="TSCB"/> that contains data to write.</param>
         /// <returns>Byte array containing the TSCB data.</returns>
         public static byte[] GetBytes(TSCB tscb)
         {
@@ -312,7 +313,6 @@ namespace BOTWToolset.IO.TSCB
                 b.AddRange(System.Text.Encoding.ASCII.GetBytes(filename));
             }
 
-            // TODO: Make this an actual function
             return b.ToArray();
         }
     }

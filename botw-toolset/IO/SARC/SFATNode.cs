@@ -1,5 +1,8 @@
 ﻿namespace BOTWToolset.IO.SARC
 {
+    /// <summary>
+    /// Contains information on stored archive files in the SARC, used in conjunction with <see cref="SFAT"/> and <see cref="SARC"/>.
+    /// </summary>
     public struct SFATNode
     {
         public uint FileNameHash { get => _fileNameHash; set => _fileNameHash = value; }

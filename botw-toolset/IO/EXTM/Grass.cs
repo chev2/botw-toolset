@@ -3,7 +3,8 @@
 namespace BOTWToolset.IO.EXTM
 {
     /// <summary>
-    /// Stores info on grass data in an .extm file
+    /// Interacts with grass data in an .extm file, used in conjunction with <see cref="TSCB.TSCB"/>.
+    /// More info found on the <see href="https://zeldamods.org/wiki/Grass.extm">ZeldaMods wiki</see>.
     /// </summary>
     class Grass
     {
@@ -19,6 +20,11 @@ namespace BOTWToolset.IO.EXTM
         public byte B { get => _b; set => _b = value; }
         private byte _b;
 
+        /// <summary>
+        /// Gets an array of <see cref="Grass"/> from an array of bytes.
+        /// </summary>
+        /// <param name="bytes">The array of bytes to retrieve <see cref="Grass"/> data from.</param>
+        /// <returns><see cref="Grass"/>[] data.</returns>
         public static Grass[] FromBytes(byte[] bytes)
         {
             using (var r = new BinaryReaderBig(new MemoryStream(bytes)))

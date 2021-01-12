@@ -7,7 +7,7 @@ using System.Windows.Controls;
 namespace BOTWToolset.Control
 {
     /// <summary>
-    /// Interaction logic for TabSARC.xaml
+    /// Interaction logic for the SARC tab.
     /// </summary>
     public partial class TabSARC : UserControl
     {

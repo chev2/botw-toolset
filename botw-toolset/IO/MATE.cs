@@ -2,6 +2,9 @@
 
 namespace BOTWToolset.IO
 {
+    /// <summary>
+    /// Contains data for .mate files.
+    /// </summary>
     public class MATE
     {
         public byte Material0 { get => _material0; set => _material0 = value; }
@@ -13,6 +16,11 @@ namespace BOTWToolset.IO
         public byte BlendWeight { get => _blendWeight; set => _blendWeight = value; }
         private byte _blendWeight;
 
+        /// <summary>
+        /// Retrieves a <see cref="MATE"/> array from a set of bytes.
+        /// </summary>
+        /// <param name="bytes">The array of bytes to read.</param>
+        /// <returns><see cref="MATE"/> array.</returns>
         public static MATE[] FromBytes(byte[] bytes)
         {
             using (var r = new BinaryReader(new MemoryStream(bytes)))
