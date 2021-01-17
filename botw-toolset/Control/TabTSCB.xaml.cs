@@ -41,9 +41,9 @@ namespace BOTWToolset.Control
         {
             PixelView.Source = null;
             writeableBitmap = null;
+
             GC.Collect(); // Garbage collect to free memory
         }
-
 
         private void PixelView_UpdateView(object sender, RoutedEventArgs e)
         {
@@ -61,11 +61,11 @@ namespace BOTWToolset.Control
                 {
                     case "PixelViewMATE":
                         {
-                            BOTWConsole.Log("Setting view to texture...");
-
                             string extension = ".mate.sstera";
                             int img_size = (int)Math.Pow(2, 8 + zoom);
                             int grid_size = 256;
+
+                            BOTWConsole.LogStatus($"Setting TSCB view to texture ({img_size / grid_size}x{img_size / grid_size})...");
 
                             ClearBitmap();
                             writeableBitmap = new WriteableBitmap(img_size, img_size, 16, 16, PixelFormats.Indexed8, GridColors.MaterialPalette);
@@ -90,15 +90,17 @@ namespace BOTWToolset.Control
                                     writeableBitmap.WritePixels(rect, color, writeableBitmap.BackBufferStride, 0);
                                 }
                             });
+
+                            BOTWConsole.LogStatus($"TSCB view set to texture ({img_size / grid_size}x{img_size / grid_size}).");
                         }
                         break;
                     case "PixelViewHGHT":
                         {
-                            BOTWConsole.Log("Setting view to heightmap...");
-
                             string extension = ".hght.sstera";
                             int img_size = (int)Math.Pow(2, 8 + zoom);
                             int grid_size = 256;
+
+                            BOTWConsole.LogStatus($"Setting TSCB view to heightmap ({img_size / grid_size}x{img_size / grid_size})...");
 
                             ClearBitmap();
                             writeableBitmap = new WriteableBitmap(img_size, img_size, 16, 16, PixelFormats.Gray8, null);
@@ -125,15 +127,17 @@ namespace BOTWToolset.Control
                                     writeableBitmap.WritePixels(rect, color, writeableBitmap.BackBufferStride, 0);
                                 }
                             });
+
+                            BOTWConsole.LogStatus($"TSCB view set to heightmap ({img_size / grid_size}x{img_size / grid_size}).");
                         }
                         break;
                     case "PixelViewGrassEXTM":
                         {
-                            BOTWConsole.Log("Setting view to grass...");
-
                             string extension = ".grass.extm.sstera";
                             int img_size = (int)Math.Pow(2, 6 + zoom);
                             int grid_size = 64;
+
+                            BOTWConsole.LogStatus($"Setting TSCB view to grass ({img_size / grid_size}x{img_size / grid_size})...");
 
                             ClearBitmap();
                             writeableBitmap = new WriteableBitmap(img_size, img_size, 16, 16, PixelFormats.Rgb24, null);
@@ -160,15 +164,17 @@ namespace BOTWToolset.Control
                                     writeableBitmap.WritePixels(rect, color, writeableBitmap.BackBufferStride, 0);
                                 }
                             });
+
+                            BOTWConsole.LogStatus($"TSCB view set to grass ({img_size / grid_size}x{img_size / grid_size}).");
                         }
                         break;
                     case "PixelViewWaterEXTM":
                         {
-                            BOTWConsole.Log("Setting view to water...");
-
                             string extension = ".water.extm.sstera";
                             int img_size = (int)Math.Pow(2, 6 + zoom);
                             int grid_size = 64;
+
+                            BOTWConsole.LogStatus($"Setting TSCB view to water ({img_size / grid_size}x{img_size / grid_size})...");
 
                             ClearBitmap();
                             writeableBitmap = new WriteableBitmap(img_size, img_size, 16, 16, PixelFormats.Indexed8, GridColors.WaterPalette);
@@ -193,6 +199,8 @@ namespace BOTWToolset.Control
                                     writeableBitmap.WritePixels(rect, color, writeableBitmap.BackBufferStride, 0);
                                 }
                             });
+
+                            BOTWConsole.LogStatus($"TSCB view set to water ({img_size / grid_size}x{img_size / grid_size}).");
                         }
                         break;
                 }
@@ -207,7 +215,7 @@ namespace BOTWToolset.Control
             {
                 byte[] yaz0_bytes = File.ReadAllBytes(Path.Combine(folder, ext_file));
                 byte[] yaz0_decomp = Yaz0.Decompress(yaz0_bytes);
-                SARC s = SARC.FromBytes(new MemoryStream(yaz0_decomp));
+                SARC s = SARC.FromBytes(yaz0_decomp);
 
                 for (int i = 0; i < s.Files.Length; i++)
                 {
