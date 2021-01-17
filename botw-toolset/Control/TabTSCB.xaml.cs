@@ -306,7 +306,7 @@ namespace BOTWToolset.Control
 
                 BOTWConsole.Log("Opening file");
 
-                TSCB t = TSCB.ReadFile(openFileDialog.FileName);
+                TSCB t = TSCB.FromBytes(File.ReadAllBytes(openFileDialog.FileName));
 
                 // Set the current file location to the chosen file's location
                 fileLocation = openFileDialog.FileName;
@@ -365,7 +365,7 @@ namespace BOTWToolset.Control
 
             if ((bool)saveFileDialog.ShowDialog())
             {
-                File.WriteAllBytes(saveFileDialog.FileName, TSCB.GetBytes(currentTSCB));
+                File.WriteAllBytes(saveFileDialog.FileName, TSCB.ToBytes(currentTSCB));
             }
         }
 
