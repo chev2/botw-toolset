@@ -23,14 +23,14 @@ namespace BOTWToolset.IO
 
         public static readonly IList<Color> WaterColors = new Color[]
         {
-            Color.FromArgb(255, 73, 137, 255), // Water
-            Color.FromArgb(255, 114, 255, 210), // Hot water
+            Color.FromArgb(255, 53, 64, 70), // Water
+            Color.FromArgb(255, 60, 94, 78), // Hot water
             Color.FromArgb(255, 173, 73, 255), // Poison water
-            Color.FromArgb(255, 255, 97, 0), // Lava
+            Color.FromArgb(255, 211, 115, 38), // Lava
             Color.FromArgb(255, 142, 211, 255), // Cold water
             Color.FromArgb(255, 86, 44, 0), // Bog (mud)
             Color.FromArgb(255, 102, 158, 255), // Clear water 01
-            Color.FromArgb(255, 52, 99, 181) // Ocean
+            Color.FromArgb(255, 32, 43, 45) // Ocean
         };
 
         public static readonly IList<Color> MaterialColors = new Color[]
