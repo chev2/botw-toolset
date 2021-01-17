@@ -35,96 +35,89 @@ namespace BOTWToolset.IO
 
         public static readonly IList<Color> MaterialColors = new Color[]
         {
-            Color.FromArgb(255, 45, 153, 0),    // 00 - Grass (basic)
-            Color.FromArgb(255, 183, 183, 183), // 01 - Light stone - Rough rock A
-            Color.FromArgb(255, 170, 68, 66),   // 02 - Red cube rock
-            Color.FromArgb(255, 163, 163, 163), // 03 - Rough rock
-            Color.FromArgb(255, 183, 183, 183), // 04 - White rock
-            Color.FromArgb(255, 32, 86, 32),    // 05 - Brown Soil and Grass (consolidated green)
-            Color.FromArgb(255, 253, 251, 163), // 06 - sand beige
-            Color.FromArgb(255, 252, 255, 112), // 07 - sandy beach (for coast)
-            Color.FromArgb(255, 250, 250, 250), // 08 - snow (flat)
-            Color.FromArgb(255, 255, 255, 255), // 09 - rock gravel
-            Color.FromArgb(255, 255, 255, 255), // 10 - earth and rock - hard soil
-            Color.FromArgb(255, 255, 255, 255), // 11 - lawn & earth
-            Color.FromArgb(255, 255, 255, 255), // 12 - futago rock
-            Color.FromArgb(255, 255, 255, 255), // 13 - cobblestones & lawn
-            Color.FromArgb(255, 255, 255, 255), // 14 - fallen leaves A
-            Color.FromArgb(255, 255, 255, 255), // 15 - thin rock and grass
-            Color.FromArgb(255, 255, 255, 255), // 16 - cliff (white) A & grass
-            Color.FromArgb(255, 255, 255, 255), // 17 - cliff (white) A
-            Color.FromArgb(255, 255, 255, 255), // 18 - cliff (white) B
-            Color.FromArgb(255, 255, 255, 255), // 19 - rock (red) A
-            Color.FromArgb(255, 255, 255, 255), // 20 - maruwa & sand
-            Color.FromArgb(255, 255, 255, 255), // 21 - rectangular rock - orange
-            Color.FromArgb(255, 255, 255, 255), // 22 - rough rock B
-            Color.FromArgb(255, 255, 255, 255), // 23 - soil (hardened red
-            Color.FromArgb(255, 255, 255, 255), // 24 - sat - farm (for fields)
-            Color.FromArgb(255, 255, 255, 255), // 25 - soil (compacted pebble)
-            Color.FromArgb(255, 255, 255, 255), // 26 - green grass and stone
-            Color.FromArgb(255, 255, 255, 255), // 27 - stormy rocks
-            Color.FromArgb(255, 255, 255, 255), // 28 - earth and sand A
-            Color.FromArgb(255, 255, 255, 255), // 29 - grass (dead) dried grass field
-            Color.FromArgb(255, 255, 255, 255), // 30 - world end - the end of the world
-            Color.FromArgb(255, 255, 255, 255), // 31 - death mountain rock (volcano) B
-            Color.FromArgb(255, 255, 255, 255), // 32 - sat (mass / volcano)
-            Color.FromArgb(255, 255, 255, 255), // 33 - snow bumpy
-            Color.FromArgb(255, 255, 255, 255), // 34 - sat (brown)
-            Color.FromArgb(255, 255, 255, 255), // 35 - earth (mass)
-            Color.FromArgb(255, 255, 255, 255), // 36 - fallen leaves B
-            Color.FromArgb(255, 255, 255, 255), // 37 - fallen leaves C
-            Color.FromArgb(255, 255, 255, 255), // 38 - moss field A
-            Color.FromArgb(255, 255, 255, 255), // 39 - moss field B
-            Color.FromArgb(255, 255, 255, 255), // 40 - cracked soil
-            Color.FromArgb(255, 255, 255, 255),
-            Color.FromArgb(255, 255, 255, 255),
-            Color.FromArgb(255, 255, 255, 255),
-            Color.FromArgb(255, 255, 255, 255),
-            Color.FromArgb(255, 255, 255, 255),
-            Color.FromArgb(255, 255, 255, 255),
-            Color.FromArgb(255, 255, 255, 255),
-            Color.FromArgb(255, 255, 255, 255),
-            Color.FromArgb(255, 255, 255, 255),
-            Color.FromArgb(255, 255, 255, 255),
-            Color.FromArgb(255, 255, 255, 255),
-            Color.FromArgb(255, 255, 255, 255),
-            Color.FromArgb(255, 255, 255, 255),
-            Color.FromArgb(255, 255, 255, 255),
-            Color.FromArgb(255, 255, 255, 255),
-            Color.FromArgb(255, 255, 255, 255),
-            Color.FromArgb(255, 255, 255, 255),
-            Color.FromArgb(255, 255, 255, 255),
-            Color.FromArgb(255, 255, 255, 255),
-            Color.FromArgb(255, 255, 255, 255),
-            Color.FromArgb(255, 255, 255, 255),
-            Color.FromArgb(255, 255, 255, 255),
-            Color.FromArgb(255, 255, 255, 255),
-            Color.FromArgb(255, 255, 255, 255),
-            Color.FromArgb(255, 255, 255, 255),
-            Color.FromArgb(255, 255, 255, 255),
-            Color.FromArgb(255, 255, 255, 255),
-            Color.FromArgb(255, 255, 255, 255),
-            Color.FromArgb(255, 255, 255, 255),
-            Color.FromArgb(255, 255, 255, 255),
-            Color.FromArgb(255, 255, 255, 255),
-            Color.FromArgb(255, 255, 255, 255),
-            Color.FromArgb(255, 255, 255, 255),
-            Color.FromArgb(255, 255, 255, 255),
-            Color.FromArgb(255, 255, 255, 255),
-            Color.FromArgb(255, 255, 255, 255),
-            Color.FromArgb(255, 255, 255, 255),
-            Color.FromArgb(255, 255, 255, 255),
-            Color.FromArgb(255, 255, 255, 255),
-            Color.FromArgb(255, 255, 255, 255),
-            Color.FromArgb(255, 255, 255, 255),
-            Color.FromArgb(255, 255, 255, 255),
-            Color.FromArgb(255, 255, 255, 255),
-            Color.FromArgb(255, 255, 255, 255),
-            Color.FromArgb(255, 255, 255, 255),
-            Color.FromArgb(255, 255, 255, 255),
-            Color.FromArgb(255, 255, 255, 255),
-            Color.FromArgb(255, 255, 255, 255),
-            Color.FromArgb(255, 255, 255, 255)
+            Color.FromArgb(255, 76, 100, 55),   // 00 - Plant_GreenGrassField_A
+            Color.FromArgb(255, 183, 183, 183), // 01 - Rock_NoisyRock_A
+            Color.FromArgb(255, 170, 68, 66),   // 02 - Rock_RedCubeRock_A
+            Color.FromArgb(255, 163, 163, 163), // 03 - Rock_RoughRock_A
+            Color.FromArgb(255, 183, 183, 183), // 04 - Rock_WhiteRock_A
+            Color.FromArgb(255, 32, 86, 32),    // 05 - Sand_BrownSoilAndGrass_A
+            Color.FromArgb(255, 253, 251, 163), // 06 - Sand_SandBeige_A
+            Color.FromArgb(255, 252, 255, 112), // 07 - Sand_SandBeach_A
+            Color.FromArgb(255, 250, 250, 250), // 08 - Snow_SnowPowder_A
+            Color.FromArgb(255, 192, 192, 192), // 09 - Rock_GravelStone_A
+            Color.FromArgb(255, 252, 255, 112), // 10 - Sand_HardMad_A
+            Color.FromArgb(255, 76, 100, 55), // 11 - Plant_GreenGrassAndMad_A
+            Color.FromArgb(255, 183, 183, 183), // 12 - Rock_FutagoRock_A
+            Color.FromArgb(255, 150, 150, 150), // 13 - Floor_StoneTilesAndMoss_A
+            Color.FromArgb(255, 82, 137, 30), // 14 - Plant_FallenLeafAndGrass_A
+            Color.FromArgb(255, 112, 137, 89), // 15 - Rock_RockAndGrass_A
+            Color.FromArgb(255, 183, 183, 183), // 16 - Rock_LargeCliffAndGrass_A
+            Color.FromArgb(255, 183, 183, 183), // 17 - Rock_LargeCliff_A
+            Color.FromArgb(255, 183, 183, 183), // 18 - Rock_LargeCliff_B
+            Color.FromArgb(255, 184, 104, 104), // 19 - Rock_RedRockSoft_A
+            Color.FromArgb(255, 183, 183, 183), // 20 - Rock_RoundRockAndSand_A
+            Color.FromArgb(255, 184, 122, 104), // 21 - Rock_OrangeCubeCliff_A
+            Color.FromArgb(255, 183, 183, 183), // 22 - Rock_NoisyRock_B
+            Color.FromArgb(255, 255, 224, 112), // 23 - Sand_HardSoilRed_A
+            Color.FromArgb(255, 56, 39, 26), // 24 - Sand_FarmMad_A
+            Color.FromArgb(255, 56, 39, 26), // 25 - Sand_HardMadAndStone_A
+            Color.FromArgb(255, 76, 100, 55), // 26 - Plant_GreenGrassAndStone_A
+            Color.FromArgb(255, 183, 183, 183), // 27 - Rock_RoughRock_B
+            Color.FromArgb(255, 56, 39, 26), // 28 - Sand_LandSlide_A
+            Color.FromArgb(255, 146, 155, 85), // 29 - Plant_DriedGrassField_A
+            Color.FromArgb(255, 36, 25, 17), // 30 - Rock_WorldEnd_A
+            Color.FromArgb(255, 93, 67, 59), // 31 - Rock_DeathMountain_B
+            Color.FromArgb(255, 93, 67, 59), // 32 - Rock_DeathMountain_C
+            Color.FromArgb(255, 250, 250, 250), // 33 - Snow_SnowBumpy_A
+            Color.FromArgb(255, 56, 39, 26), // 34 - Sand_BrownSoil_A
+            Color.FromArgb(255, 56, 39, 26), // 35 - Sand_SolidSoil_A
+            Color.FromArgb(255, 76, 100, 55), // 36 - Plant_FallenLeafAndGrass_B
+            Color.FromArgb(255, 76, 100, 55), // 37 - Plant_FallenLeafAndGrass_C
+            Color.FromArgb(255, 81, 104, 65), // 38 - Plant_MossField_A
+            Color.FromArgb(255, 81, 104, 65), // 39 - Plant_MossField_B
+            Color.FromArgb(255, 107, 81, 73), // 40 - Sand_CrackSoil_A
+            Color.FromArgb(255, 82, 149, 159), // 41 - Wall_TerraZoraBridge_A
+            Color.FromArgb(255, 56, 39, 26), // 42 - Sand_BrownSoilAndStone_A - Soil - Pebbles mixed with pebbles
+            Color.FromArgb(255, 183, 183, 183), // 43 - Rock_GravelStone_B - Stone_Light - Gravel B 
+            Color.FromArgb(255, 68, 104, 44), // 44 - Sand_GraySoilAndGrass_A - Gravel mixed with weeds
+            Color.FromArgb(255, 183, 183, 183), // 45 - Rock_HorizontallyCliff_A
+            Color.FromArgb(255, 183, 183, 183), // 46 - Rock_LargeCliffSnow_A
+            Color.FromArgb(255, 134, 75, 75), // 47 - Rock_RedRockDark_A
+            Color.FromArgb(255, 82, 149, 159), // 48 - Rock_RockZora_A
+            Color.FromArgb(255, 252, 255, 112), // 49 - Sand_PebblySoil_A
+            Color.FromArgb(255, 250, 250, 250), // 50 - Rock_RockSnow_A
+            Color.FromArgb(255, 250, 250, 250), // 51 - Rock_RockSnow_B
+            Color.FromArgb(255, 183, 183, 183), // 52 - Rock_LargeCliff_C
+            Color.FromArgb(255, 183, 183, 183), // 53 - Rock_BeigeRock_A
+            Color.FromArgb(255, 255, 159, 127), // 54 - Sand_RedPebbly_A
+            Color.FromArgb(255, 76, 100, 55), // 55 - Plant_GreenGrassField_B
+            Color.FromArgb(255, 252, 255, 112), // 56 - Sand_SandWindPattern_A
+            Color.FromArgb(255, 182, 170, 135), // 57 - Rock_CliffCheese_A
+            Color.FromArgb(255, 183, 183, 183), // 58 - Rock_ColorfulRock_A
+            Color.FromArgb(255, 118, 93, 73), // 59 - Rock_HardBrownStone_A
+            Color.FromArgb(255, 82, 149, 159), // 60 - Wall_TerraZoraWall_A
+            Color.FromArgb(255, 250, 250, 250), // 61 - Snow_SnowAndStone_A
+            Color.FromArgb(255, 183, 183, 183), // 62 - Rock_MountainSheiker_A
+            Color.FromArgb(255, 99, 131, 72), // 63 - Plant_MountainSheiker_A
+            Color.FromArgb(255, 159, 135, 93), // 64 - Rock_TropicalCliff_A
+            Color.FromArgb(255, 76, 100, 55), // 65 - Plant_TropicalGrass_A
+            Color.FromArgb(255, 184, 104, 104), // 66 - Rock_RedCubeCliff_A
+            Color.FromArgb(255, 252, 255, 112), // 67 - Sand_PebblySoil_B
+            Color.FromArgb(255, 183, 183, 183), // 68 - Rock_SeasideRock_A
+            Color.FromArgb(255, 183, 183, 183), // 69 - Rock_GravelStone_C
+            Color.FromArgb(255, 183, 183, 183), // 70 - Rock_TropicalLumpRock_A
+            Color.FromArgb(255, 120, 120, 120), // 71 - Wall_HyliaStoneRoad_A
+            Color.FromArgb(255, 99, 131, 72), // 72 - Plant_LakeHylia_A
+            Color.FromArgb(255, 107, 81, 73), // 73 - Sand_CrackSoil_B
+            Color.FromArgb(255, 252, 255, 112), // 74 - Sand_SandBeachAndGrass_A
+            Color.FromArgb(255, 99, 131, 72), // 75 - Plant_BlackGrassField_A
+            Color.FromArgb(255, 221, 221, 221), // 76 - Sand_WhiteSoilAndStone_A
+            Color.FromArgb(255, 126, 98, 51), // 77 - Sand_DebriWood_A
+            Color.FromArgb(255, 141, 141, 141), // 78 - Sand_DebriStone_A
+            Color.FromArgb(255, 150, 150, 150), // 79 - Rock_RoughRockMoss_A
+            Color.FromArgb(255, 99, 131, 72), // 80 - Plant_FallenLeafAndGrass_D
+            Color.FromArgb(255, 99, 131, 72), // 81 - Plant_FallenLeafCherry_A
+            Color.FromArgb(255, 183, 183, 183) // 82 - Rock_RockBeachCoral_A
         };
 
         public static readonly BitmapPalette GrassPalette;
