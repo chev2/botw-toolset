@@ -1,6 +1,8 @@
 ﻿using BOTWToolset.Debugging;
 using BOTWToolset.IO.SARC;
 using Microsoft.Win32;
+using Microsoft.WindowsAPICodePack.Dialogs;
+using System.IO;
 using System.Windows;
 using System.Windows.Controls;
 
@@ -120,7 +122,7 @@ namespace BOTWToolset.Control
             {
                 BOTWConsole.Log("Opening file");
 
-                SARC s = SARC.ReadFile(openFileDialog.FileName);
+                SARC s = SARC.FromBytes(File.ReadAllBytes(openFileDialog.FileName));
 
                 // Set the current file location to the chosen file's location
                 fileLocation = openFileDialog.FileName;
@@ -134,6 +136,7 @@ namespace BOTWToolset.Control
                 MenuFileClose.IsEnabled = true;
                 MenuFileSave.IsEnabled = true;
                 MenuFileSaveAs.IsEnabled = true;
+                MenuFileExportFiles.IsEnabled = true;
             }
         }
 
@@ -153,16 +156,54 @@ namespace BOTWToolset.Control
             MenuFileClose.IsEnabled = false;
             MenuFileSave.IsEnabled = false;
             MenuFileSaveAs.IsEnabled = false;
+            MenuFileExportFiles.IsEnabled = false;
         }
 
         private void Menu_FileSave(object sender, RoutedEventArgs e)
         {
+            BOTWConsole.LogStatus($"Saved SARC to {fileLocation}.");
 
+            File.WriteAllBytes(fileLocation, SARC.ToBytes(currentSARC));
         }
 
         private void Menu_FileSaveAs(object sender, RoutedEventArgs e)
         {
+            BOTWConsole.LogStatus($"Saving SARC as...");
 
+            SaveFileDialog saveFileDialog = new SaveFileDialog
+            {
+                InitialDirectory = @"C:\",
+                RestoreDirectory = true,
+                Title = "Save SARC file",
+                Filter = "All files (*.*)|*.*"
+            };
+
+            if ((bool)saveFileDialog.ShowDialog())
+            {
+                File.WriteAllBytes(saveFileDialog.FileName, SARC.ToBytes(currentSARC));
+
+                BOTWConsole.LogStatus($"Saved SARC to {saveFileDialog.FileName}.");
+            }
+        }
+
+        private void Menu_FileExportFiles(object sender, RoutedEventArgs e)
+        {
+            BOTWConsole.LogStatus($"Exporting files to folder...");
+
+            CommonOpenFileDialog openFolderDialog = new CommonOpenFileDialog
+            {
+                InitialDirectory = @"C:\",
+                RestoreDirectory = true,
+                Title = "Export files to folder",
+                IsFolderPicker = true
+            };
+
+            if (openFolderDialog.ShowDialog() == CommonFileDialogResult.Ok)
+            {
+                SARC.WriteFiles(currentSARC, openFolderDialog.FileName);
+
+                BOTWConsole.LogStatus($"Exported SARC files to {openFolderDialog.FileName}.");
+            }
         }
     }
 }
