@@ -1,0 +1,1 @@
+I'm currently not accepting pull requests as this project is currently in a very, very early state and needs a lot more development. However, if you would like to make feature requests/bug reports, feel free to open an issue.
