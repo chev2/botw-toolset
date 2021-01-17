@@ -32,10 +32,6 @@ namespace BOTWToolset.Control
             InitializeComponent();
 
             RenderOptions.SetBitmapScalingMode(PixelView, BitmapScalingMode.NearestNeighbor); // Nearest-neighbor sampling
-            //RenderOptions.SetEdgeMode(i, EdgeMode.Unspecified);
-
-            //Placeholder image
-            writeableBitmap = new WriteableBitmap(4, 4, 16, 16, PixelFormats.BlackWhite, null);
 
             PixelView.Source = writeableBitmap;
             PixelView.Stretch = Stretch.Uniform;
@@ -48,21 +44,6 @@ namespace BOTWToolset.Control
             GC.Collect(); // Garbage collect to free memory
         }
 
-        public void PixelViewBorder_MouseWheel(object sender, MouseWheelEventArgs e)
-        {
-            Matrix m = PixelView.RenderTransform.Value;
-
-            if (e.Delta > 0)
-            {
-                m.ScaleAt(1.5f, 1.5f, e.GetPosition(PixelViewBorder).X, e.GetPosition(PixelViewBorder).Y);
-            }
-            else
-            {
-                m.ScaleAt(2 / 3, 2 / 3, e.GetPosition(PixelViewBorder).X, e.GetPosition(PixelViewBorder).Y);
-            }
-
-            PixelView.RenderTransform = new MatrixTransform(m);
-        }
 
         private void PixelView_UpdateView(object sender, RoutedEventArgs e)
         {
