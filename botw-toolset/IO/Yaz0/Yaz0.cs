@@ -32,35 +32,28 @@ namespace BOTWToolset.IO.Yaz0
         /// </summary>
         /// <param name="file">The file (full path) to read.</param>
         /// <returns><see cref="Yaz0"/> containing the file's data.</returns>
-        public static Yaz0 ReadFile(string file)
+        public static Yaz0 FromBytes(byte[] bytes)
         {
-            if (File.Exists(file))
+            Yaz0 y = new Yaz0();
+
+            // Use big-endian
+            using (var r = new BinaryReaderBig(new MemoryStream(bytes)))
             {
-                Yaz0 y = new Yaz0();
+                y.Magic = new string(r.ReadChars(4));
+                if (y.Magic != "Yaz0")
+                    throw new InvalidMagicException("This file is not Yaz0-encoded.");
 
-                // Use big-endian
-                using (var r = new BinaryReaderBig(File.Open(file, FileMode.Open)))
-                {
-                    y.Magic = new string(r.ReadChars(4));
-                    if (y.Magic != "Yaz0")
-                        throw new InvalidMagicException("This file is not Yaz0-encoded.");
+                y.UncompressedDataSize = r.ReadUInt32();
+                y.DataAlignment = r.ReadUInt32();
 
-                    y.UncompressedDataSize = r.ReadUInt32();
-                    y.DataAlignment = r.ReadUInt32();
+                // Seek back to beginning of file to capture all bytes
+                r.BaseStream.Seek(0, SeekOrigin.Begin);
 
-                    // Seek back to beginning of file to capture all bytes
-                    r.BaseStream.Seek(0, SeekOrigin.Begin);
-
-                    // Capture all bytes
-                    y.Bytes = r.ReadBytes((int)r.BaseStream.Length);
-                }
-
-                return y;
+                // Capture all bytes
+                y.Bytes = r.ReadBytes((int)r.BaseStream.Length);
             }
-            else
-            {
-                throw new FileNotFoundException("Cannot find Yaz0 file to read.");
-            }
+
+            return y;
         }
 
         /// <summary>
