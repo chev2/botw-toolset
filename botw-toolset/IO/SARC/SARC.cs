@@ -37,15 +37,15 @@ namespace BOTWToolset.IO.SARC
         public byte[][] Files;
 
         /// <summary>
-        /// Gets a <see cref="SARC"/> from a data stream.
+        /// Gets a <see cref="SARC"/> from an array of bytes.
         /// </summary>
-        /// <param name="stream">Data stream to get <see cref="SARC"/> info from.</param>
+        /// <param name="stream">Array of bytes to get <see cref="SARC"/> info from.</param>
         /// <returns><see cref="SARC"/> with the stream's data.</returns>
-        public static SARC FromBytes(Stream stream)
+        public static SARC FromBytes(byte[] bytes)
         {
             SARC s = new SARC();
 
-            using (var r = new BinaryReaderBig(stream))
+            using (var r = new BinaryReaderBig(new MemoryStream(bytes)))
             {
                 //SARC header
                 s.Magic = new string(r.ReadChars(4));
@@ -159,26 +159,69 @@ namespace BOTWToolset.IO.SARC
             return s;
         }
 
-        public static SARC ReadFile(string file)
-        {
-            if (File.Exists(file))
-            {
-                return FromBytes(File.Open(file, FileMode.Open));
-            }
-            else
-            {
-                throw new FileNotFoundException("Cannot find SARC file to read.");
-            }
-        }
-
-        public static byte[] GetBytes(SARC sarc)
+        /// <summary>
+        /// Gets an array of bytes from a <see cref="SARC"/>.
+        /// </summary>
+        /// <param name="sarc"><see cref="SARC"/> to convert to bytes.</param>
+        /// <returns>byte[] containg the <see cref="SARC"/> data.</returns>
+        public static byte[] ToBytes(SARC sarc)
         {
             // TODO: Make this an actual function
             List<byte> bytes = new List<byte>();
 
+            // SARC header
+            bytes.AddRange(new byte[] { 0x53, 0x41, 0x52, 0x43 }); // SARC magic header
+            bytes.AddRange(new byte[] { 0x00, 0x14 }); // Header length, always 0x14
+            bytes.AddRange(new byte[] { 0xFE, 0xFF }); // 0xFEFF - big endian, 0xFFFE - little endian
+            bytes.AddRange(BitConverter.GetBytes(sarc.FileSize).Reverse()); // File size of the entire SARC, including headers
+            bytes.AddRange(BitConverter.GetBytes(sarc.DataOffset).Reverse()); // Beginning of data offset
+            bytes.AddRange(new byte[] { 0x01, 0x00 }); // Version number, always 0x0100
+            bytes.AddRange(new byte[] { 0x00, 0x00 }); // Reserved
+
+            // SFAT header
+            bytes.AddRange(new byte[] { 0x53, 0x46, 0x41, 0x54 }); // SFAT magic header
+            bytes.AddRange(new byte[] { 0x00, 0x0C }); // Header length, always 0xC
+            bytes.AddRange(BitConverter.GetBytes(sarc.SFAT.NodeCount).Reverse());
+            bytes.AddRange(new byte[] { 0x00, 0x00, 0x00, 0x65 }); // Hash key, always 0x65
+
+            // SFAT node structures
+            foreach (SFATNode node in sarc.SFAT.Nodes)
+            {
+                bytes.AddRange(BitConverter.GetBytes(node.FileNameHash).Reverse());
+                bytes.AddRange(BitConverter.GetBytes(node.FileAttributes).Reverse());
+                bytes.AddRange(BitConverter.GetBytes(node.NodeFileDataBegin).Reverse());
+                bytes.AddRange(BitConverter.GetBytes(node.NodeFileDataEnd).Reverse());
+            }
+
+            // SFNT header
+            bytes.AddRange(new byte[] { 0x53, 0x46, 0x4E, 0x54 }); // SFNT magic header
+            bytes.AddRange(new byte[] { 0x00, 0x08 }); // Header length, always 0x8
+            bytes.AddRange(new byte[] { 0x00, 0x00 }); // Reserved
+
+            foreach (var filename in sarc.SFNT.FileNames)
+            {
+                var extra = filename.Length % 4; // Number of characters not in a 4-byte-aligned segment
+
+                for (int i = 0; i < filename.Length + (4 - extra); i++)
+                {
+                    if (i < filename.Length) // If this is a valid char
+                        bytes.Add((byte)filename[i]);
+                    else // If not, add null
+                        bytes.Add(0x00);
+                }
+            }
+
+            foreach (var file_bytes in sarc.Files)
+                bytes.AddRange(file_bytes);
+
             return bytes.ToArray();
         }
 
+        /// <summary>
+        /// Writes a <see cref="SARC"/>'s unpackaged files to a folder.
+        /// </summary>
+        /// <param name="sarc"><see cref="SARC"/> to get file data from.</param>
+        /// <param name="folder">Folder to write the unpackaged files to.</param>
         public static void WriteFiles(SARC sarc, string folder)
         {
             //TODO: Finish this function
@@ -191,10 +234,8 @@ namespace BOTWToolset.IO.SARC
                 // Get combined path (folder + file name)
                 var file_path = Path.Combine(folder, file_name);
 
-                using (var r = new BinaryWriterBig(File.OpenWrite(file_path), System.Text.Encoding.UTF8))
-                {
-
-                }
+                // Write bytes to file
+                File.WriteAllBytes(file_path, files[i]);
             }
         }
     }
