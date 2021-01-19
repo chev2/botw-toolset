@@ -4,10 +4,6 @@
              xmlns:local="clr-namespace:BOTWToolset"
              StartupUri="Dashboard.xaml">
     <Application.Resources>
-        <!--<Style TargetType="{x:Type Grid}">
-            <Setter Property="Background" Value="#262C35"></Setter>
-        </Style>-->
-
         <SolidColorBrush x:Key="BGTone0" Color="#262C35"/>
         <SolidColorBrush x:Key="BGTone1" Color="#2C343E"/>
         <SolidColorBrush x:Key="BGTone2" Color="#37424E"/>

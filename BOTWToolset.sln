@@ -3,7 +3,7 @@ Microsoft Visual Studio Solution File, Format Version 12.00
 # Visual Studio Version 16
 VisualStudioVersion = 16.0.30804.86
 MinimumVisualStudioVersion = 10.0.40219.1
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "BOTWToolset", "botw-toolset\BOTWToolset.csproj", "{9FE4680A-CD27-4835-844D-50543BEFF2D9}"
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "BOTWToolset", "BOTWToolset.csproj", "{99C01800-580D-4A02-88A7-CE3B8DCB9A16}"
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
@@ -11,15 +11,15 @@ Global
 		Release|Any CPU = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(ProjectConfigurationPlatforms) = postSolution
-		{9FE4680A-CD27-4835-844D-50543BEFF2D9}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
-		{9FE4680A-CD27-4835-844D-50543BEFF2D9}.Debug|Any CPU.Build.0 = Debug|Any CPU
-		{9FE4680A-CD27-4835-844D-50543BEFF2D9}.Release|Any CPU.ActiveCfg = Release|Any CPU
-		{9FE4680A-CD27-4835-844D-50543BEFF2D9}.Release|Any CPU.Build.0 = Release|Any CPU
+		{99C01800-580D-4A02-88A7-CE3B8DCB9A16}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{99C01800-580D-4A02-88A7-CE3B8DCB9A16}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{99C01800-580D-4A02-88A7-CE3B8DCB9A16}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{99C01800-580D-4A02-88A7-CE3B8DCB9A16}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE
 	EndGlobalSection
 	GlobalSection(ExtensibilityGlobals) = postSolution
-		SolutionGuid = {6F11E363-7B2E-44BA-94A6-ABEF9C9C1837}
+		SolutionGuid = {2342C2FA-D8B4-4711-9BF6-4A7B673363F8}
 	EndGlobalSection
 EndGlobal

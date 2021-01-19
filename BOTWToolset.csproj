@@ -1,0 +1,30 @@
+﻿<Project Sdk="Microsoft.NET.Sdk">
+
+  <PropertyGroup>
+    <OutputType>WinExe</OutputType>
+    <TargetFramework>net5.0-windows</TargetFramework>
+    <UseWPF>true</UseWPF>
+    <ApplicationIcon>appicon.ico</ApplicationIcon>
+    <AssemblyVersion>1.0.0.0</AssemblyVersion>
+    <Version>1.0.0.0</Version>
+    <Authors>Chev</Authors>
+  </PropertyGroup>
+
+  <ItemGroup>
+    <PackageReference Include="Microsoft-WindowsAPICodePack-Core" Version="1.1.4" />
+    <PackageReference Include="Microsoft-WindowsAPICodePack-Shell" Version="1.1.4" />
+  </ItemGroup>
+
+  <ItemGroup>
+    <Resource Include="appicon.ico" />
+    <Resource Include="Resources\Icons\document.png" />
+    <Resource Include="Resources\Icons\letter-z.png" />
+    <Resource Include="Resources\Icons\mountain.png" />
+    <Resource Include="Resources\Icons\package.png" />
+    <Resource Include="Resources\Icons\speaker.png" />
+    <Resource Include="Resources\Icons\text-file-2.png" />
+    <Resource Include="Resources\Icons\text-file.png" />
+    <Resource Include="Resources\Icons\triforce.png" />
+  </ItemGroup>
+
+</Project>
