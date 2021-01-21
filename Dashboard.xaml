@@ -10,36 +10,38 @@
         <TabControl x:Name="TabController" Margin="10,10,10,41">
             <TabItem Header="Dashboard">
                 <Grid Background="#2C343E">
-                    <Label Content="Dashboard" Margin="10,10,10,0" VerticalAlignment="Top" Height="48" FontSize="28" VerticalContentAlignment="Center" FontFamily="Segoe UI Light"/>
+                    <Label Content="Dashboard" Margin="10,10,10,0" VerticalAlignment="Top" Height="48" FontSize="28" VerticalContentAlignment="Center" FontFamily="Segoe UI Light" HorizontalAlignment="Center"/>
 
-                    <Border x:Name="DashboardButtonTSCB" BorderBrush="White" HorizontalAlignment="Left" Margin="10,63,0,0" VerticalAlignment="Top" Width="250" Height="165">
-                        <Grid MouseLeftButtonUp="TabSelect_TSCB">
-                            <Image Source="/Resources/Icons/mountain.png" Margin="10,10,190,0" Width="48" Height="48" VerticalAlignment="Top"/>
-                            <Label Margin="63,10,10,0" VerticalContentAlignment="Center" FontSize="24" Height="48" VerticalAlignment="Top" Content="TSCB"/>
-                            <TextBlock Text="Edits terrain scene binary files." Margin="10,63,10,10" TextWrapping="Wrap"></TextBlock>
-                        </Grid>
-                    </Border>
-                    <Border x:Name="DashboardButtonYaz0" BorderBrush="White" HorizontalAlignment="Left" Margin="265,63,0,0" VerticalAlignment="Top" Width="250" Height="165">
-                        <Grid MouseLeftButtonUp="TabSelect_Yaz0">
-                            <Image Source="/Resources/Icons/letter-z.png" Margin="10,10,190,0" Width="48" Height="48" VerticalAlignment="Top"/>
-                            <Label Margin="63,10,10,0" VerticalContentAlignment="Center" FontSize="24" Height="48" VerticalAlignment="Top" Content="Yaz0"/>
-                            <TextBlock Text="Allows compression/decompression using Yaz0 encoding." Margin="10,63,10,10" TextWrapping="Wrap"></TextBlock>
-                        </Grid>
-                    </Border>
-                    <Border x:Name="DashboardButtonSARC" BorderBrush="White" HorizontalAlignment="Left" Margin="520,63,0,0" VerticalAlignment="Top" Width="250" Height="165">
-                        <Grid MouseLeftButtonUp="TabSelect_SARC">
-                            <Image Source="/Resources/Icons/package.png" Margin="10,10,190,0" Width="48" Height="48" VerticalAlignment="Top"/>
-                            <Label Margin="63,10,10,0" VerticalContentAlignment="Center" FontSize="24" Height="48" VerticalAlignment="Top" Content="SARC"/>
-                            <TextBlock Text="Tools to unpack and pack SARC files." Margin="10,63,10,10" TextWrapping="Wrap"></TextBlock>
-                        </Grid>
-                    </Border>
-                    <Border x:Name="DashboardButtonRSTB" BorderBrush="White" HorizontalAlignment="Left" Margin="775,63,0,0" VerticalAlignment="Top" Width="250" Height="165">
-                        <Grid MouseLeftButtonUp="TabSelect_RSTB">
-                            <Image Source="/Resources/Icons/text-file.png" Margin="10,10,190,0" Width="48" Height="48" VerticalAlignment="Top"/>
-                            <Label Margin="63,10,10,0" VerticalContentAlignment="Center" FontSize="24" Height="48" VerticalAlignment="Top" Content="RSTB"/>
-                            <TextBlock Text="Allows edits to the resource table." Margin="10,63,10,10" TextWrapping="Wrap"></TextBlock>
-                        </Grid>
-                    </Border>
+                    <WrapPanel Margin="10,0,10,10" HorizontalAlignment="Center" VerticalAlignment="Center">
+                        <Border MouseLeftButtonUp="TabSelect" x:Name="DashboardButtonTSCB" BorderBrush="White" HorizontalAlignment="Left" VerticalAlignment="Top" Width="250" Height="165" Margin="5,5">
+                            <Grid>
+                                <Image Source="/Resources/Icons/mountain.png" Margin="10,10,190,0" Width="48" Height="48" VerticalAlignment="Top"/>
+                                <Label Margin="63,10,10,0" VerticalContentAlignment="Center" FontSize="24" Height="48" VerticalAlignment="Top" Content="TSCB"/>
+                                <TextBlock Text="Edits terrain scene binary files." Margin="10,63,10,10" TextWrapping="Wrap"></TextBlock>
+                            </Grid>
+                        </Border>
+                        <Border MouseLeftButtonUp="TabSelect" x:Name="DashboardButtonYaz0" BorderBrush="White" HorizontalAlignment="Left" VerticalAlignment="Top" Width="250" Height="165" Margin="5,5">
+                            <Grid>
+                                <Image Source="/Resources/Icons/letter-z.png" Margin="10,10,190,0" Width="48" Height="48" VerticalAlignment="Top"/>
+                                <Label Margin="63,10,10,0" VerticalContentAlignment="Center" FontSize="24" Height="48" VerticalAlignment="Top" Content="Yaz0"/>
+                                <TextBlock Text="Allows compression/decompression using Yaz0 encoding." Margin="10,63,10,10" TextWrapping="Wrap"></TextBlock>
+                            </Grid>
+                        </Border>
+                        <Border MouseLeftButtonUp="TabSelect" x:Name="DashboardButtonSARC" BorderBrush="White" HorizontalAlignment="Left" VerticalAlignment="Top" Width="250" Height="165" Margin="5,5">
+                            <Grid>
+                                <Image Source="/Resources/Icons/package.png" Margin="10,10,190,0" Width="48" Height="48" VerticalAlignment="Top"/>
+                                <Label Margin="63,10,10,0" VerticalContentAlignment="Center" FontSize="24" Height="48" VerticalAlignment="Top" Content="SARC"/>
+                                <TextBlock Text="Tools to unpack and pack SARC files." Margin="10,63,10,10" TextWrapping="Wrap"></TextBlock>
+                            </Grid>
+                        </Border>
+                        <Border MouseLeftButtonUp="TabSelect" x:Name="DashboardButtonRSTB" BorderBrush="White" HorizontalAlignment="Left" VerticalAlignment="Top" Width="250" Height="165" Margin="5,5">
+                            <Grid>
+                                <Image Source="/Resources/Icons/text-file.png" Margin="10,10,190,0" Width="48" Height="48" VerticalAlignment="Top"/>
+                                <Label Margin="63,10,10,0" VerticalContentAlignment="Center" FontSize="24" Height="48" VerticalAlignment="Top" Content="RSTB"/>
+                                <TextBlock Text="Allows edits to the resource table." Margin="10,63,10,10" TextWrapping="Wrap"></TextBlock>
+                            </Grid>
+                        </Border>
+                    </WrapPanel>
                 </Grid>
             </TabItem>
             <TabItem x:Name="tabItemTSCB" Header="TSCB">

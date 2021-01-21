@@ -2,6 +2,7 @@
 using System;
 using System.Reflection;
 using System.Windows;
+using System.Windows.Controls;
 
 namespace BOTWToolset
 {
@@ -23,12 +24,17 @@ namespace BOTWToolset
             LabelVersion.Content = $"Version v{VERSION}";
         }
 
-        private void TabSelect_TSCB(object sender, System.Windows.Input.MouseButtonEventArgs e) => tabItemTSCB.IsSelected = true;
+        private void TabSelect(object sender, System.Windows.Input.MouseButtonEventArgs e)
+        {
+            var sender_border = (Border)sender;
 
-        private void TabSelect_Yaz0(object sender, System.Windows.Input.MouseButtonEventArgs e) => tabItemYaz0.IsSelected = true;
-
-        private void TabSelect_SARC(object sender, System.Windows.Input.MouseButtonEventArgs e) => tabItemSARC.IsSelected = true;
-
-        private void TabSelect_RSTB(object sender, System.Windows.Input.MouseButtonEventArgs e) => tabItemRSTB.IsSelected = true;
+            switch (sender_border.Name)
+            {
+                case "DashboardButtonTSCB": tabItemTSCB.IsSelected = true; break;
+                case "DashboardButtonYaz0": tabItemYaz0.IsSelected = true; break;
+                case "DashboardButtonSARC": tabItemSARC.IsSelected = true; break;
+                case "DashboardButtonRSTB": tabItemRSTB.IsSelected = true; break;
+            }
+        }
     }
 }
