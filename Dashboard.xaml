@@ -38,7 +38,7 @@
                             <Grid>
                                 <Image Source="/Resources/Icons/text-file.png" Margin="10,10,190,0" Width="48" Height="48" VerticalAlignment="Top"/>
                                 <Label Margin="63,10,10,0" VerticalContentAlignment="Center" FontSize="24" Height="48" VerticalAlignment="Top" Content="RSTB"/>
-                                <TextBlock Text="Allows edits to the resource table." Margin="10,63,10,10" TextWrapping="Wrap"></TextBlock>
+                                <TextBlock Text="Edits resource size tables." Margin="10,63,10,10" TextWrapping="Wrap"></TextBlock>
                             </Grid>
                         </Border>
                     </WrapPanel>
