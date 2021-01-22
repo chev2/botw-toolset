@@ -29,38 +29,38 @@
                     </Border>
                 </Grid>
                 <Grid HorizontalAlignment="Right" Width="294">
-                    <Label Content="SARC Header" HorizontalAlignment="Right" Margin="0,10,10,0" VerticalAlignment="Top" Height="32" Width="275" FontSize="18" VerticalContentAlignment="Center"/>
+                    <Label Content="SARC Header" HorizontalAlignment="Right" Margin="0,10,10,0" VerticalAlignment="Top" Height="32" Width="275" FontSize="18" VerticalContentAlignment="Center" ToolTip="Main SARC header info."/>
 
                     <Label Content="Magic" Margin="0,47,150,0" VerticalAlignment="Top" HorizontalAlignment="Right" Width="135"/>
-                    <TextBox x:Name="SARCMagic" Height="23" Margin="0,78,150,0" TextWrapping="Wrap" VerticalAlignment="Top" IsReadOnly="True" VerticalContentAlignment="Center" HorizontalAlignment="Right" Width="135"/>
+                    <TextBox x:Name="SARCMagic" Height="23" Margin="0,78,150,0" TextWrapping="Wrap" VerticalAlignment="Top" IsReadOnly="True" VerticalContentAlignment="Center" HorizontalAlignment="Right" Width="135" ToolTip="SARC Magic. Should always be 'SARC'."/>
                     <Label Content="Header Length" Margin="0,47,10,0" VerticalAlignment="Top" HorizontalContentAlignment="Right" HorizontalAlignment="Right" Width="135"/>
-                    <TextBox x:Name="SARCHeaderLength" Height="23" Margin="0,78,10,0" TextWrapping="Wrap" VerticalAlignment="Top" IsReadOnly="True" VerticalContentAlignment="Center" HorizontalContentAlignment="Right" HorizontalAlignment="Right" Width="135"/>
+                    <TextBox x:Name="SARCHeaderLength" Height="23" Margin="0,78,10,0" TextWrapping="Wrap" VerticalAlignment="Top" IsReadOnly="True" VerticalContentAlignment="Center" HorizontalContentAlignment="Right" HorizontalAlignment="Right" Width="135" ToolTip="Main SARC header's length, in bytes."/>
                     <Label Content="Uses Big Endian" Margin="0,106,150,0" VerticalAlignment="Top" HorizontalAlignment="Right" Width="135"/>
-                    <TextBox x:Name="SARCIsBigEndian" Height="23" Margin="0,137,150,0" TextWrapping="Wrap" VerticalAlignment="Top" IsReadOnly="True" VerticalContentAlignment="Center" RenderTransformOrigin="0.709,0.304" HorizontalAlignment="Right" Width="135"/>
+                    <TextBox x:Name="SARCIsBigEndian" Height="23" Margin="0,137,150,0" TextWrapping="Wrap" VerticalAlignment="Top" IsReadOnly="True" VerticalContentAlignment="Center" RenderTransformOrigin="0.709,0.304" HorizontalAlignment="Right" Width="135" ToolTip="Whether or not this SARC file uses big-endian byte order."/>
                     <Label Content="File Size" Margin="0,106,10,0" VerticalAlignment="Top" HorizontalContentAlignment="Right" HorizontalAlignment="Right" Width="135"/>
-                    <TextBox x:Name="SARCFileSize" Height="23" Margin="0,137,10,0" TextWrapping="Wrap" VerticalAlignment="Top" IsReadOnly="True" VerticalContentAlignment="Center" HorizontalContentAlignment="Right" HorizontalAlignment="Right" Width="135"/>
+                    <TextBox x:Name="SARCFileSize" Height="23" Margin="0,137,10,0" TextWrapping="Wrap" VerticalAlignment="Top" IsReadOnly="True" VerticalContentAlignment="Center" HorizontalContentAlignment="Right" HorizontalAlignment="Right" Width="135" ToolTip="File size of the entire SARC file, in bytes."/>
                     <Label Content="Data Offset" Margin="0,165,150,0" VerticalAlignment="Top" HorizontalAlignment="Right" Width="135"/>
-                    <TextBox x:Name="SARCDataOffset" Height="23" Margin="0,196,150,0" TextWrapping="Wrap" VerticalAlignment="Top" IsReadOnly="True" VerticalContentAlignment="Center" HorizontalAlignment="Right" Width="135"/>
+                    <TextBox x:Name="SARCDataOffset" Height="23" Margin="0,196,150,0" TextWrapping="Wrap" VerticalAlignment="Top" IsReadOnly="True" VerticalContentAlignment="Center" HorizontalAlignment="Right" Width="135" ToolTip="Beginning of SARC data offset."/>
                     <Label Content="Version" Margin="0,165,10,0" VerticalAlignment="Top" HorizontalContentAlignment="Right" HorizontalAlignment="Right" Width="135"/>
-                    <TextBox x:Name="SARCVersion" Height="23" Margin="0,196,10,0" TextWrapping="Wrap" VerticalAlignment="Top" IsReadOnly="True" VerticalContentAlignment="Center" HorizontalContentAlignment="Right" HorizontalAlignment="Right" Width="135"/>
+                    <TextBox x:Name="SARCVersion" Height="23" Margin="0,196,10,0" TextWrapping="Wrap" VerticalAlignment="Top" IsReadOnly="True" VerticalContentAlignment="Center" HorizontalContentAlignment="Right" HorizontalAlignment="Right" Width="135" ToolTip="Version number of the SARC file. Should always be 0x100 (256)."/>
 
-                    <Label Content="SFAT Header" HorizontalAlignment="Right" Margin="0,224,10,0" VerticalAlignment="Top" Height="32" Width="275" FontSize="18" VerticalContentAlignment="Center"/>
+                    <Label Content="SFAT Header" HorizontalAlignment="Right" Margin="0,224,10,0" VerticalAlignment="Top" Height="32" Width="275" FontSize="18" VerticalContentAlignment="Center" ToolTip="SFAT (SARC File Allocation Table) header info."/>
 
                     <Label Content="Magic" Margin="0,261,150,0" VerticalAlignment="Top" HorizontalAlignment="Right" Width="135"/>
-                    <TextBox x:Name="SFATMagic" Height="23" Margin="0,292,150,0" TextWrapping="Wrap" VerticalAlignment="Top" IsReadOnly="True" VerticalContentAlignment="Center" HorizontalAlignment="Right" Width="135"/>
+                    <TextBox x:Name="SFATMagic" Height="23" Margin="0,292,150,0" TextWrapping="Wrap" VerticalAlignment="Top" IsReadOnly="True" VerticalContentAlignment="Center" HorizontalAlignment="Right" Width="135" ToolTip="SFAT Magic. Should always be 'SFAT'."/>
                     <Label Content="Header Length" Margin="0,261,10,0" VerticalAlignment="Top" HorizontalContentAlignment="Right" HorizontalAlignment="Right" Width="135"/>
-                    <TextBox x:Name="SFATHeaderLength" Height="23" Margin="0,292,10,0" TextWrapping="Wrap" VerticalAlignment="Top" IsReadOnly="True" VerticalContentAlignment="Center" HorizontalContentAlignment="Right" HorizontalAlignment="Right" Width="135"/>
+                    <TextBox x:Name="SFATHeaderLength" Height="23" Margin="0,292,10,0" TextWrapping="Wrap" VerticalAlignment="Top" IsReadOnly="True" VerticalContentAlignment="Center" HorizontalContentAlignment="Right" HorizontalAlignment="Right" Width="135" ToolTip="SFAT header's length, in bytes."/>
                     <Label Content="Node Count" Margin="0,320,150,0" VerticalAlignment="Top" HorizontalAlignment="Right" Width="135"/>
-                    <TextBox x:Name="SFATNodeCount" Height="23" Margin="0,351,150,0" TextWrapping="Wrap" VerticalAlignment="Top" IsReadOnly="True" VerticalContentAlignment="Center" HorizontalAlignment="Right" Width="135"/>
+                    <TextBox x:Name="SFATNodeCount" Height="23" Margin="0,351,150,0" TextWrapping="Wrap" VerticalAlignment="Top" IsReadOnly="True" VerticalContentAlignment="Center" HorizontalAlignment="Right" Width="135" ToolTip="Number of nodes in this SARC file."/>
                     <Label Content="Hash Key" Margin="0,320,10,0" VerticalAlignment="Top" HorizontalContentAlignment="Right" HorizontalAlignment="Right" Width="135"/>
-                    <TextBox x:Name="SFATHashKey" Height="23" Margin="0,351,10,0" TextWrapping="Wrap" VerticalAlignment="Top" IsReadOnly="True" VerticalContentAlignment="Center" HorizontalContentAlignment="Right" HorizontalAlignment="Right" Width="135"/>
+                    <TextBox x:Name="SFATHashKey" Height="23" Margin="0,351,10,0" TextWrapping="Wrap" VerticalAlignment="Top" IsReadOnly="True" VerticalContentAlignment="Center" HorizontalContentAlignment="Right" HorizontalAlignment="Right" Width="135" ToolTip="Hash key. Should always be 0x65 (101)."/>
                     <Label Content="Magic" Margin="0,416,150,0" VerticalAlignment="Top" HorizontalAlignment="Right" Width="135"/>
 
-                    <Label Content="SFNT Header" HorizontalAlignment="Right" Margin="0,379,10,0" VerticalAlignment="Top" Height="32" Width="275" FontSize="18" VerticalContentAlignment="Center"/>
+                    <Label Content="SFNT Header" HorizontalAlignment="Right" Margin="0,379,10,0" VerticalAlignment="Top" Height="32" Width="275" FontSize="18" VerticalContentAlignment="Center" ToolTip="SFNT (SARC File Name Table) header info."/>
 
-                    <TextBox x:Name="SFNTMagic" Height="23" Margin="0,447,150,0" TextWrapping="Wrap" VerticalAlignment="Top" IsReadOnly="True" VerticalContentAlignment="Center" HorizontalAlignment="Right" Width="135"/>
+                    <TextBox x:Name="SFNTMagic" Height="23" Margin="0,447,150,0" TextWrapping="Wrap" VerticalAlignment="Top" IsReadOnly="True" VerticalContentAlignment="Center" HorizontalAlignment="Right" Width="135" ToolTip="SFNT Magic. Should always be 'SFNT'."/>
                     <Label Content="Header Length" Margin="0,416,10,0" VerticalAlignment="Top" HorizontalContentAlignment="Right" HorizontalAlignment="Right" Width="135"/>
-                    <TextBox x:Name="SFNTHeaderLength" Height="23" Margin="0,447,10,0" TextWrapping="Wrap" VerticalAlignment="Top" IsReadOnly="True" VerticalContentAlignment="Center" HorizontalContentAlignment="Right" HorizontalAlignment="Right" Width="135"/>
+                    <TextBox x:Name="SFNTHeaderLength" Height="23" Margin="0,447,10,0" TextWrapping="Wrap" VerticalAlignment="Top" IsReadOnly="True" VerticalContentAlignment="Center" HorizontalContentAlignment="Right" HorizontalAlignment="Right" Width="135" ToolTip="SFNT header's length, in bytes."/>
                 </Grid>
             </Grid>
         </Border>

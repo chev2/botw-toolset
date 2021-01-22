@@ -16,29 +16,51 @@
                 <MenuItem x:Name="MenuFileClose" Header="_Close" Click="Menu_FileClose" IsEnabled="False"/>
             </MenuItem>
         </Menu>
-        <Border BorderThickness="1" Margin="10,81,536,145">
+        <Border BorderThickness="1" Margin="10,81,536,120">
             <Grid x:Name="PixelViewBorder">
                 <Image x:Name="PixelView" Margin="10"/>
+            </Grid>
+        </Border>
+        <Border Margin="0,81,293,120" HorizontalAlignment="Right" Width="238">
+            <Grid x:Name="PixelViewTypes">
+                <Button x:Name="PixelViewMATE" Content="Texture View" Margin="10,10,10,0" Height="32" VerticalAlignment="Top" IsEnabled="False" Click="PixelView_UpdateView"/>
+                <Button x:Name="PixelViewHGHT" Content="Height View" Margin="10,47,10,0" Height="32" VerticalAlignment="Top" IsEnabled="False" Click="PixelView_UpdateView"/>
+                <Button x:Name="PixelViewGrassEXTM" Content="Grass Height View" Margin="10,84,10,0" Height="32" VerticalAlignment="Top" IsEnabled="False" Click="PixelView_UpdateView"/>
+                <Button x:Name="PixelViewWaterEXTM" Content="Water Height View" Margin="10,121,10,0" Height="32" VerticalAlignment="Top" IsEnabled="False" Click="PixelView_UpdateView"/>
+
+                <Label Content="Zoom" Margin="10,163,10,0" HorizontalContentAlignment="Center" Height="26" VerticalAlignment="Top"/>
+                <Slider x:Name="SliderZoomLevel" Margin="10,194,10,0" Maximum="8" SmallChange="1" IsSnapToTickEnabled="True" TickPlacement="TopLeft" Height="28" VerticalAlignment="Top"/>
+
+                <Label Content="Overrides" Margin="10,227,10,0" ToolTip="Allows overriding certain values in the TSCB for every single area." HorizontalContentAlignment="Center" FontSize="14" VerticalContentAlignment="Center" Height="33" VerticalAlignment="Top"/>
+
+                <Label Content="Min Terrain Height" Margin="10,0,69,103" Height="26" VerticalAlignment="Bottom" HorizontalContentAlignment="Center"/>
+                <TextBox x:Name="OverrideMinTerrainHeight" Margin="172,0,10,103" VerticalContentAlignment="Center" Height="26" VerticalAlignment="Bottom" KeyDown="OverrideKeyDown" IsEnabled="False" ToolTip="Minimum occlusion height to render terrain in (Range 0-1)."/>
+                <Label Content="Max Terrain Height" Margin="10,0,69,72" Height="26" VerticalAlignment="Bottom" HorizontalContentAlignment="Center"/>
+                <TextBox x:Name="OverrideMaxTerrainHeight" Margin="172,0,10,72" VerticalContentAlignment="Center" Height="26" VerticalAlignment="Bottom" KeyDown="OverrideKeyDown" IsEnabled="False" ToolTip="Max occlusion height to render terrain in (Range 0-1)."/>
+                <Label Content="Min Water Height" Margin="10,0,69,41" Height="26" VerticalAlignment="Bottom" HorizontalContentAlignment="Center"/>
+                <TextBox x:Name="OverrideMinWaterHeight" Margin="172,0,10,41" VerticalContentAlignment="Center" Height="26" VerticalAlignment="Bottom" KeyDown="OverrideKeyDown" IsEnabled="False" ToolTip="Minimum occlusion height to render water in (Range 0-1)."/>
+                <Label Content="Max Water Height" Margin="10,0,69,10" Height="26" VerticalAlignment="Bottom" HorizontalContentAlignment="Center"/>
+                <TextBox x:Name="OverrideMaxWaterHeight" Margin="172,0,10,10" VerticalContentAlignment="Center" Height="26" VerticalAlignment="Bottom"  KeyDown="OverrideKeyDown" IsEnabled="False" ToolTip="Max occlusion height to render water in (Range 0-1)."/>
             </Grid>
         </Border>
         <Border BorderThickness="1" Margin="0,81,10,10" HorizontalAlignment="Right" Width="278">
             <Grid>
                 <Label Content="Signature" HorizontalAlignment="Left" Margin="10,0,0,195" Width="120" Height="26" VerticalAlignment="Bottom"/>
-                <TextBox x:Name="Signature" x:FieldModifier="public" Margin="10,0,146,172" TextWrapping="Wrap" Text="" VerticalContentAlignment="Center" IsReadOnly="True" Height="23" VerticalAlignment="Bottom"/>
+                <TextBox x:Name="Signature" x:FieldModifier="public" Margin="10,0,146,172" TextWrapping="Wrap" Text="" VerticalContentAlignment="Center" IsReadOnly="True" Height="23" VerticalAlignment="Bottom" ToolTip="TSCB Magic signature. Should always be 'TSCB'."/>
                 <Label Content="Version" HorizontalAlignment="Left" Margin="146,0,0,195" Width="120" HorizontalContentAlignment="Right" Height="26" VerticalAlignment="Bottom"/>
-                <TextBox x:Name="Version" x:FieldModifier="public" Margin="146,0,10,172" TextWrapping="Wrap" Text="" VerticalContentAlignment="Center" IsReadOnly="True" Height="23" VerticalAlignment="Bottom"/>
+                <TextBox x:Name="Version" x:FieldModifier="public" Margin="146,0,10,172" TextWrapping="Wrap" Text="" VerticalContentAlignment="Center" IsReadOnly="True" Height="23" VerticalAlignment="Bottom" ToolTip="TSCB version number."/>
                 <Label Content="File Base Offset" HorizontalAlignment="Left" Margin="10,0,0,141" Width="120" Height="26" VerticalAlignment="Bottom"/>
-                <TextBox x:Name="FileBaseOffset" x:FieldModifier="public" Margin="10,0,146,118" TextWrapping="Wrap" Text="" VerticalContentAlignment="Center" IsReadOnly="True" Height="23" VerticalAlignment="Bottom"/>
+                <TextBox x:Name="FileBaseOffset" x:FieldModifier="public" Margin="10,0,146,118" TextWrapping="Wrap" Text="" VerticalContentAlignment="Center" IsReadOnly="True" Height="23" VerticalAlignment="Bottom" ToolTip="Relative offset for the file base table."/>
                 <Label Content="World Scale" HorizontalAlignment="Left" Margin="146,0,0,141" Width="120" HorizontalContentAlignment="Right" Height="26" VerticalAlignment="Bottom"/>
-                <TextBox x:Name="WorldScale" x:FieldModifier="public" Margin="146,0,10,118" TextWrapping="Wrap" Text="" VerticalContentAlignment="Center" IsReadOnly="True" Height="23" VerticalAlignment="Bottom"/>
+                <TextBox x:Name="WorldScale" x:FieldModifier="public" Margin="146,0,10,118" TextWrapping="Wrap" Text="" VerticalContentAlignment="Center" IsReadOnly="True" Height="23" VerticalAlignment="Bottom" ToolTip="Scales terrain along the game's X and Z axis. Default is 500."/>
                 <Label Content="Terrain Max Height" HorizontalAlignment="Left" Margin="10,0,0,87" Width="120" Height="26" VerticalAlignment="Bottom"/>
-                <TextBox x:Name="TerrainMaxHeight" x:FieldModifier="public" Margin="10,0,146,64" TextWrapping="Wrap" Text="" VerticalContentAlignment="Center" IsReadOnly="True" Height="23" VerticalAlignment="Bottom"/>
+                <TextBox x:Name="TerrainMaxHeight" x:FieldModifier="public" Margin="10,0,146,64" TextWrapping="Wrap" Text="" VerticalContentAlignment="Center" IsReadOnly="True" Height="23" VerticalAlignment="Bottom" ToolTip="Terrain max mesh height. Default is 800."/>
                 <Label Content="Material Info Length" HorizontalAlignment="Left" Margin="146,0,0,87" Width="120" HorizontalContentAlignment="Right" Height="26" VerticalAlignment="Bottom"/>
-                <TextBox x:Name="MaterialInfoLength" x:FieldModifier="public" Margin="146,0,10,64" TextWrapping="Wrap" Text="" VerticalContentAlignment="Center" IsReadOnly="True" Height="23" VerticalAlignment="Bottom"/>
+                <TextBox x:Name="MaterialInfoLength" x:FieldModifier="public" Margin="146,0,10,64" TextWrapping="Wrap" Text="" VerticalContentAlignment="Center" IsReadOnly="True" Height="23" VerticalAlignment="Bottom" ToolTip="Number of elements in the material info array."/>
                 <Label Content="Area Array Length" HorizontalAlignment="Left" Margin="10,0,0,33" Width="120" Height="26" VerticalAlignment="Bottom"/>
-                <TextBox x:Name="AreaArrayLength" x:FieldModifier="public" Margin="10,0,146,10" TextWrapping="Wrap" Text="" VerticalContentAlignment="Center" IsReadOnly="True" Height="23" VerticalAlignment="Bottom"/>
+                <TextBox x:Name="AreaArrayLength" x:FieldModifier="public" Margin="10,0,146,10" TextWrapping="Wrap" Text="" VerticalContentAlignment="Center" IsReadOnly="True" Height="23" VerticalAlignment="Bottom" ToolTip="Number of elements in the area array."/>
                 <Label Content="Tile Size" HorizontalAlignment="Left" Margin="146,0,0,33" Width="120" HorizontalContentAlignment="Right" Height="26" VerticalAlignment="Bottom"/>
-                <TextBox x:Name="TileSize" x:FieldModifier="public" Margin="146,0,10,10" TextWrapping="Wrap" Text="" VerticalContentAlignment="Center" IsReadOnly="True" Height="23" VerticalAlignment="Bottom"/>
+                <TextBox x:Name="TileSize" x:FieldModifier="public" Margin="146,0,10,10" TextWrapping="Wrap" Text="" VerticalContentAlignment="Center" IsReadOnly="True" Height="23" VerticalAlignment="Bottom" ToolTip="Tile size. Used by the area array."/>
                 <Border BorderThickness="1" HorizontalAlignment="Left" Margin="10,10,0,226" Width="256">
                     <ScrollViewer VerticalScrollBarVisibility="Auto">
                         <StackPanel x:Name="TSCBAreaViewer" x:FieldModifier="public"/>
@@ -46,26 +68,7 @@
                 </Border>
             </Grid>
         </Border>
-        <TextBox x:Name="TSCBConsole" x:FieldModifier="public" TextWrapping="Wrap" Text="" Margin="10,0,293,10" Height="130" VerticalAlignment="Bottom" UndoLimit="1" AllowDrop="False" FontFamily="Consolas" VerticalScrollBarVisibility="Auto" IsReadOnly="True"/>
-        <Border Margin="0,81,293,145" HorizontalAlignment="Right" Width="238">
-            <Grid x:Name="PixelViewTypes">
-                <Button x:Name="PixelViewMATE" Content="Texture View" Margin="10,10,10,0" Height="32" VerticalAlignment="Top" IsEnabled="False" Click="PixelView_UpdateView"/>
-                <Button x:Name="PixelViewHGHT" Content="Height View" Margin="10,47,10,0" Height="32" VerticalAlignment="Top" IsEnabled="False" Click="PixelView_UpdateView"/>
-                <Button x:Name="PixelViewGrassEXTM" Content="Grass Height View" Margin="10,84,10,0" Height="32" VerticalAlignment="Top" IsEnabled="False" Click="PixelView_UpdateView"/>
-                <Button x:Name="PixelViewWaterEXTM" Content="Water Height View" Margin="10,121,10,0" Height="32" VerticalAlignment="Top" IsEnabled="False" Click="PixelView_UpdateView"/>
+        <TextBox x:Name="TSCBConsole" x:FieldModifier="public" TextWrapping="Wrap" Text="" Margin="10,0,293,10" Height="105" VerticalAlignment="Bottom" UndoLimit="1" AllowDrop="False" FontFamily="Consolas" VerticalScrollBarVisibility="Auto" IsReadOnly="True"/>
 
-                <Label Content="Zoom" Margin="10,0,10,162" Height="26" VerticalAlignment="Bottom" HorizontalContentAlignment="Center"/>
-                <Slider x:Name="SliderZoomLevel" Margin="10,0,10,129" Height="28" VerticalAlignment="Bottom" Maximum="8" SmallChange="1" IsSnapToTickEnabled="True" TickPlacement="TopLeft"/>
-                
-                <Label Content="Min Terrain Height" Margin="10,0,69,103" Height="26" VerticalAlignment="Bottom"/>
-                <TextBox x:Name="OverrideMinTerrainHeight" Margin="172,0,10,103" VerticalContentAlignment="Center" Height="26" VerticalAlignment="Bottom" KeyDown="OverrideKeyDown" IsEnabled="False"/>
-                <Label Content="Max Terrain Height" Margin="10,0,69,72" Height="26" VerticalAlignment="Bottom"/>
-                <TextBox x:Name="OverrideMaxTerrainHeight" Margin="172,0,10,72" VerticalContentAlignment="Center" Height="26" VerticalAlignment="Bottom" KeyDown="OverrideKeyDown" IsEnabled="False"/>
-                <Label Content="Min Water Height" Margin="10,0,69,41" Height="26" VerticalAlignment="Bottom"/>
-                <TextBox x:Name="OverrideMinWaterHeight" Margin="172,0,10,41" VerticalContentAlignment="Center" Height="26" VerticalAlignment="Bottom" KeyDown="OverrideKeyDown" IsEnabled="False"/>
-                <Label Content="Max Water Height" Margin="10,0,69,10" Height="26" VerticalAlignment="Bottom"/>
-                <TextBox x:Name="OverrideMaxWaterHeight" Margin="172,0,10,10" VerticalContentAlignment="Center" Height="26" VerticalAlignment="Bottom"  KeyDown="OverrideKeyDown" IsEnabled="False"/>
-            </Grid>
-        </Border>
     </Grid>
 </UserControl>
