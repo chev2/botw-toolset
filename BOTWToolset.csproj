@@ -10,6 +10,21 @@
     <Authors>Chev</Authors>
   </PropertyGroup>
 
+  <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Debug|AnyCPU'">
+    <PlatformTarget>AnyCPU</PlatformTarget>
+  </PropertyGroup>
+
+  <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Release|AnyCPU'">
+    <PlatformTarget>AnyCPU</PlatformTarget>
+  </PropertyGroup>
+
+  <ItemGroup>
+    <None Remove=".gitignore" />
+    <None Remove="CONTRIBUTING.md" />
+    <None Remove="LICENSE" />
+    <None Remove="README.md" />
+  </ItemGroup>
+
   <ItemGroup>
     <PackageReference Include="Microsoft-WindowsAPICodePack-Core" Version="1.1.4" />
     <PackageReference Include="Microsoft-WindowsAPICodePack-Shell" Version="1.1.4" />
