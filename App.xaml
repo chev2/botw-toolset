@@ -17,12 +17,12 @@
         <SolidColorBrush x:Key="BorderGray" Color="#506071"/>
 
         <Style TargetType="{x:Type Label}">
-            <Setter Property="Foreground" Value="White"></Setter>
+            <Setter Property="Foreground" Value="White"/>
         </Style>
         <Style TargetType="{x:Type Button}">
-            <Setter Property="Background" Value="{StaticResource ButtonBG}"></Setter>
-            <Setter Property="Foreground" Value="White"></Setter> <!-- Text color -->
-            <Setter Property="BorderBrush" Value="White"></Setter>
+            <Setter Property="Background" Value="{StaticResource ButtonBG}"/>
+            <Setter Property="Foreground" Value="White"/> <!-- Text color -->
+            <Setter Property="BorderBrush" Value="White"/>
 
             <Setter Property="Template">
                 <Setter.Value>
@@ -35,18 +35,18 @@
 
                         <ControlTemplate.Triggers>
                             <Trigger Property="IsMouseOver" Value="True">
-                                <Setter Property="Background" Value="{StaticResource BGTone3}" />
-                                <Setter Property="Foreground" Value="White" />
+                                <Setter Property="Background" Value="{StaticResource BGTone3}"/>
+                                <Setter Property="Foreground" Value="White"/>
                             </Trigger>
 
                             <Trigger Property="IsPressed" Value="True">
-                                <Setter Property="Background" Value="{StaticResource ButtonSelected}" />
-                                <Setter Property="Foreground" Value="White" />
+                                <Setter Property="Background" Value="{StaticResource ButtonSelected}"/>
+                                <Setter Property="Foreground" Value="White"/>
                             </Trigger>
 
                             <Trigger Property="IsEnabled" Value="False">
-                                <Setter Property="Background" Value="Transparent" />
-                                <Setter Property="Foreground" Value="{StaticResource BorderGray}" />
+                                <Setter Property="Background" Value="Transparent"/>
+                                <Setter Property="Foreground" Value="{StaticResource BorderGray}"/>
                             </Trigger>
                         </ControlTemplate.Triggers>
                     </ControlTemplate>
@@ -54,14 +54,14 @@
             </Setter>
         </Style>
         <Style TargetType="{x:Type TabControl}">
-            <Setter Property="Background" Value="{StaticResource BGTone1}"></Setter>
-            <Setter Property="Foreground" Value="White"></Setter>
-            <Setter Property="BorderBrush" Value="Transparent"></Setter>
+            <Setter Property="Background" Value="{StaticResource BGTone1}"/>
+            <Setter Property="Foreground" Value="White"/>
+            <Setter Property="BorderBrush" Value="Transparent"/>
         </Style>
         <Style TargetType="{x:Type TabItem}">
-            <Setter Property="Background" Value="{StaticResource BGTone2}"></Setter>
-            <Setter Property="Foreground" Value="White"></Setter>
-            <Setter Property="BorderBrush" Value="Transparent"></Setter>
+            <Setter Property="Background" Value="{StaticResource BGTone2}"/>
+            <Setter Property="Foreground" Value="White"/>
+            <Setter Property="BorderBrush" Value="Transparent"/>
 
             <Setter Property="Template">
                 <Setter.Value>
@@ -99,30 +99,31 @@
             </Setter>
         </Style>
         <Style TargetType="{x:Type Menu}">
-            <Setter Property="Background" Value="{StaticResource BGTone2}"></Setter>
-            <Setter Property="Foreground" Value="White"></Setter>
+            <Setter Property="Background" Value="{StaticResource BGTone2}"/>
+            <Setter Property="Foreground" Value="White"/>
         </Style>
         <Style TargetType="{x:Type MenuItem}">
-            <Setter Property="Foreground" Value="#FF212121"></Setter>
+            <Setter Property="Foreground" Value="#FF212121"/>
+            <Setter Property="BorderThickness" Value="0"/>
         </Style>
         <Style TargetType="{x:Type TextBox}">
-            <Setter Property="Background" Value="Transparent"></Setter>
-            <Setter Property="Foreground" Value="White"></Setter>
-            <Setter Property="BorderBrush" Value="{StaticResource BorderGray}"></Setter>
+            <Setter Property="Background" Value="Transparent"/>
+            <Setter Property="Foreground" Value="White"/>
+            <Setter Property="BorderBrush" Value="{StaticResource BorderGray}"/>
         </Style>
         <Style TargetType="{x:Type Border}">
-            <Setter Property="BorderBrush" Value="{StaticResource BorderGray}"></Setter>
-            <Setter Property="BorderThickness" Value="1"></Setter>
+            <Setter Property="BorderBrush" Value="{StaticResource BorderGray}"/>
+            <Setter Property="BorderThickness" Value="1"/>
         </Style>
         <Style TargetType="{x:Type Image}">
             <!--Smooth edges on transparent images-->
-            <Setter Property="RenderOptions.BitmapScalingMode" Value="HighQuality"></Setter>
+            <Setter Property="RenderOptions.BitmapScalingMode" Value="HighQuality"/>
         </Style>
         <Style TargetType="{x:Type Expander}">
-            <Setter Property="Foreground" Value="White"></Setter>
+            <Setter Property="Foreground" Value="White"/>
         </Style>
         <Style TargetType="{x:Type CheckBox}">
-            <Setter Property="Foreground" Value="White"></Setter>
+            <Setter Property="Foreground" Value="White"/>
         </Style>
     </Application.Resources>
 </Application>
