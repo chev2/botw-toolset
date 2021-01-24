@@ -20,11 +20,27 @@ namespace BOTWToolset.Control
     /// </summary>
     public partial class TabTSCB : UserControl
     {
+        /// <summary>
+        /// The file location for the currently loaded TSCB file.
+        /// </summary>
         public static string fileLocation;
+
+        /// <summary>
+        /// The currently loaded TSCB, if any.
+        /// </summary>
         public static TSCB currentTSCB;
 
-        public static WriteableBitmap writeableBitmap; //used for pixel-like display
+        /// <summary>
+        /// WriteableBitmap that is used for the map display.
+        /// </summary>
+        public static WriteableBitmap writeableBitmap;
 
+        /// <summary>
+        /// Used to modify the map display with new info.
+        /// </summary>
+        /// <param name="sarc">The SARC archive to read for data.</param>
+        /// <param name="xyoffs">X and Y integer offsets.</param>
+        /// <param name="i"></param>
         private delegate void IteratePixels(SARC sarc, int[] xyoffs, int i);
 
         public TabTSCB()
@@ -35,6 +51,12 @@ namespace BOTWToolset.Control
 
             PixelView.Source = writeableBitmap;
             PixelView.Stretch = Stretch.Uniform;
+        }
+
+        private void UserControlLoaded(object sender, RoutedEventArgs e)
+        {
+            this.Focusable = true;
+            this.Focus(); // Update IsEnabled on MenuItem buttons
         }
 
         private void ClearBitmap()
@@ -285,7 +307,7 @@ namespace BOTWToolset.Control
             }
         }
 
-        private void Menu_FileOpen(object sender, RoutedEventArgs e)
+        private void Menu_FileOpen(object sender, ExecutedRoutedEventArgs e)
         {
             BOTWConsole.Log("Clicked File -> Open button");
 
@@ -320,6 +342,7 @@ namespace BOTWToolset.Control
                 // Allow the file to be saved
                 MenuFileClose.IsEnabled = true;
                 MenuFileSave.IsEnabled = true;
+                MenuFileSaveAs.IsEnabled = true;
 
                 // Really laggy, creating 9,000+ controls isn't necessarily a fantastic idea
                 // Maybe having a filter would help?
@@ -331,6 +354,36 @@ namespace BOTWToolset.Control
 
                     TSCBAreaViewer.Children.Add(ae);
                 }*/
+            }
+        }
+
+        private void Menu_FileSave(object sender, ExecutedRoutedEventArgs e)
+        {
+            BOTWConsole.Log("Clicked File -> Save button");
+
+            File.WriteAllBytes(fileLocation, TSCB.ToBytes(currentTSCB));
+
+            BOTWConsole.LogStatus($"Saved file to {fileLocation}.");
+        }
+
+        private void Menu_FileSaveAs(object sender, ExecutedRoutedEventArgs e)
+        {
+            BOTWConsole.Log("Clicked File -> Save As button");
+
+            SaveFileDialog saveFileDialog = new SaveFileDialog
+            {
+                InitialDirectory = @"C;\",
+                RestoreDirectory = true,
+                Title = "Save TSCB file",
+                DefaultExt = "tscb",
+                Filter = "TSCB files (*.tscb)|*.tscb"
+            };
+
+            if ((bool)saveFileDialog.ShowDialog())
+            {
+                File.WriteAllBytes(saveFileDialog.FileName, TSCB.ToBytes(currentTSCB));
+
+                BOTWConsole.LogStatus($"Saved file to {saveFileDialog.FileName}.");
             }
         }
 
@@ -347,26 +400,7 @@ namespace BOTWToolset.Control
             // Since there's no file open, don't allow saving
             MenuFileClose.IsEnabled = false;
             MenuFileSave.IsEnabled = false;
-        }
-
-        // TODO: split this into "save" and "save as"
-        private void Menu_FileSave(object sender, RoutedEventArgs e)
-        {
-            BOTWConsole.Log("Clicked File -> Save button");
-
-            SaveFileDialog saveFileDialog = new SaveFileDialog
-            {
-                InitialDirectory = @"C;\",
-                RestoreDirectory = true,
-                Title = "Save TSCB file",
-                DefaultExt = "tscb",
-                Filter = "TSCB files (*.tscb)|*.tscb"
-            };
-
-            if ((bool)saveFileDialog.ShowDialog())
-            {
-                File.WriteAllBytes(saveFileDialog.FileName, TSCB.ToBytes(currentTSCB));
-            }
+            MenuFileSaveAs.IsEnabled = false;
         }
 
         private void OverrideKeyDown(object sender, KeyEventArgs e)

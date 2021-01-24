@@ -5,14 +5,25 @@
              xmlns:d="http://schemas.microsoft.com/expression/blend/2008" 
              xmlns:local="clr-namespace:BOTWToolset.Control"
              mc:Ignorable="d" 
-             d:DesignHeight="597" d:DesignWidth="1246 " Width="Auto" Height="Auto">
+             d:DesignHeight="597" d:DesignWidth="1246 " Width="Auto" Height="Auto" Loaded="UserControlLoaded">
+    <UserControl.CommandBindings>
+        <CommandBinding Command="Open" Executed="Menu_FileOpen"/>
+        <CommandBinding Command="Save" Executed="Menu_FileSave"/>
+        <CommandBinding Command="SaveAs" Executed="Menu_FileSaveAs"/>
+    </UserControl.CommandBindings>
+    <UserControl.InputBindings>
+        <KeyBinding Key="O" Modifiers="Ctrl" Command="Open"/>
+        <KeyBinding Key="S" Modifiers="Ctrl" Command="Save"/>
+        <KeyBinding Key="S" Modifiers="Ctrl+Shift" Command="SaveAs"/>
+    </UserControl.InputBindings>
     <Grid>
         <Label Content="TSCB Editor" Margin="10,10,10,0" VerticalAlignment="Top" Height="48" FontSize="28" VerticalContentAlignment="Center" FontFamily="Segoe UI Light"/>
 
         <Menu Margin="10,58,10,0" VerticalAlignment="Top">
             <MenuItem Header="_File" Foreground="White">
-                <MenuItem x:Name="MenuFileOpen" Header="_Open" Click="Menu_FileOpen" InputGestureText="Ctrl+O"/>
-                <MenuItem x:Name="MenuFileSave" Header="_Save" Click="Menu_FileSave" InputGestureText="Ctrl+S" IsEnabled="False"/>
+                <MenuItem x:Name="MenuFileOpen" Header="_Open" Command="Open"/>
+                <MenuItem x:Name="MenuFileSave" Header="_Save" Command="Save" IsEnabled="False"/>
+                <MenuItem x:Name="MenuFileSaveAs" Header="_Save As" Command="SaveAs" IsEnabled="False"/>
                 <MenuItem x:Name="MenuFileClose" Header="_Close" Click="Menu_FileClose" IsEnabled="False"/>
             </MenuItem>
         </Menu>
