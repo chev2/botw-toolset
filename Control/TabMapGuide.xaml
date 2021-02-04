@@ -1,0 +1,24 @@
+﻿<UserControl x:Class="BOTWToolset.Control.TabMapGuide"
+             xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+             xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+             xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006" 
+             xmlns:d="http://schemas.microsoft.com/expression/blend/2008" 
+             xmlns:local="clr-namespace:BOTWToolset.Control"
+             mc:Ignorable="d" 
+             d:DesignHeight="600" d:DesignWidth="1280" Width="Auto" Height="Auto">
+    <Grid>
+        <Label Content="Map Guide" Margin="10,10,10,0" VerticalAlignment="Top" Height="48" FontSize="28" VerticalContentAlignment="Center" FontFamily="Segoe UI Light"/>
+        <Border Margin="10,63,0,10" HorizontalAlignment="Left" Width="64">
+            <StackPanel>
+                <Button x:Name="ViewMajorToS" Content="ToS Shrines" Height="64" Click="SwitchView"></Button>
+                <Button x:Name="ViewDragonPaths" Content="Dragon&#xD;&#xA;Paths" Height="64" Click="SwitchView"></Button>
+            </StackPanel>
+        </Border>
+        <Border Margin="79,63,10,10">
+            <Grid>
+                <Image x:Name="MapImage" Source="/Resources/BOTW/botw_map_quarter_size.jpg" Stretch="Uniform" HorizontalAlignment="Center"/>
+                <Canvas x:Name="MapArea" SizeChanged="MapSizeChanged" HorizontalAlignment="Stretch"/>
+            </Grid>
+        </Border>
+    </Grid>
+</UserControl>

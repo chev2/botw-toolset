@@ -56,6 +56,9 @@
             <TabItem x:Name="tabItemRSTB" Header="RSTB">
                 <local:TabRSTB x:Name="tabRSTB" x:FieldModifier="public"/>
             </TabItem>
+            <TabItem x:Name="tabItemMapGuide" Header="Map Guide">
+                <local:TabMapGuide x:Name="tabMapGuide" x:FieldModifier="public"/>
+            </TabItem>
         </TabControl>
         <Label x:Name="LabelStatus" Content="" Margin="10,0,215,10" Height="26" VerticalAlignment="Bottom"/>
         <Label x:Name="LabelVersion" Content="" Margin="0,0,10,10" HorizontalAlignment="Right" Width="200" Height="26" VerticalAlignment="Bottom" HorizontalContentAlignment="Right"/>

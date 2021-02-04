@@ -34,7 +34,10 @@
 
   <ItemGroup>
     <Resource Include="appicon.ico" />
+    <Resource Include="Resources\BOTW\botw_map_quarter_size.jpg" />
     <Resource Include="Resources\Icons\document.png" />
+    <Resource Include="Resources\Icons\hollow-circle.png" />
+    <Resource Include="Resources\Icons\horn.png" />
     <Resource Include="Resources\Icons\letter-z.png" />
     <Resource Include="Resources\Icons\mountain.png" />
     <Resource Include="Resources\Icons\package.png" />
