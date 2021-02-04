@@ -5,7 +5,7 @@
              xmlns:d="http://schemas.microsoft.com/expression/blend/2008" 
              xmlns:local="clr-namespace:BOTWToolset.Control"
              mc:Ignorable="d"  
-             d:DesignHeight="597" d:DesignWidth="1246 " Width="Auto" Height="Auto">
+             d:DesignHeight="600" d:DesignWidth="1280" Width="Auto" Height="Auto">
     <Grid>
         <Label Content="RSTB Editor" Margin="10,10,10,0" VerticalAlignment="Top" Height="48" FontSize="28" VerticalContentAlignment="Center" FontFamily="Segoe UI Light"/>
     </Grid>

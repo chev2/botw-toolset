@@ -5,7 +5,7 @@
              xmlns:d="http://schemas.microsoft.com/expression/blend/2008" 
              xmlns:local="clr-namespace:BOTWToolset.Control"
              mc:Ignorable="d" 
-             d:DesignHeight="597" d:DesignWidth="1246 " Width="Auto" Height="Auto" Loaded="UserControlLoaded">
+             d:DesignHeight="600" d:DesignWidth="1280" Width="Auto" Height="Auto" Loaded="UserControlLoaded">
     <UserControl.CommandBindings>
         <CommandBinding Command="Open" Executed="Menu_FileOpen"/>
         <CommandBinding Command="Save" Executed="Menu_FileSave"/>
@@ -42,7 +42,7 @@
                 <Label Content="Zoom" Margin="10,163,10,0" HorizontalContentAlignment="Center" Height="26" VerticalAlignment="Top"/>
                 <Slider x:Name="SliderZoomLevel" Margin="10,194,10,0" Maximum="8" SmallChange="1" IsSnapToTickEnabled="True" TickPlacement="TopLeft" Height="28" VerticalAlignment="Top"/>
 
-                <Label Content="Overrides" Margin="10,227,10,0" ToolTip="Allows overriding certain values in the TSCB for every single area." HorizontalContentAlignment="Center" FontSize="14" VerticalContentAlignment="Center" Height="33" VerticalAlignment="Top"/>
+                <Label Content="Overrides" Margin="10,0,10,134" ToolTip="Allows overriding certain values in the TSCB for every single area." HorizontalContentAlignment="Center" FontSize="14" VerticalContentAlignment="Center" Height="33" VerticalAlignment="Bottom"/>
 
                 <Label Content="Min Terrain Height" Margin="10,0,69,103" Height="26" VerticalAlignment="Bottom" HorizontalContentAlignment="Center"/>
                 <TextBox x:Name="OverrideMinTerrainHeight" Margin="172,0,10,103" VerticalContentAlignment="Center" Height="26" VerticalAlignment="Bottom" KeyDown="OverrideKeyDown" IsEnabled="False" ToolTip="Minimum occlusion height to render terrain in (Range 0-1)."/>
