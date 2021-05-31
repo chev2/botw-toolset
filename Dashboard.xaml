@@ -44,18 +44,6 @@
                     </WrapPanel>
                 </Grid>
             </TabItem>
-            <TabItem x:Name="tabItemTSCB" Header="TSCB">
-                <local:TabTSCB x:Name="tabTSCB" x:FieldModifier="public"/>
-            </TabItem>
-            <TabItem x:Name="tabItemYaz0" Header="Yaz0">
-                <local:TabYaz0 x:Name="tabYaz0" x:FieldModifier="public"/>
-            </TabItem>
-            <TabItem x:Name="tabItemSARC" Header="SARC">
-                <local:TabSARC x:Name="tabSARC" x:FieldModifier="public"/>
-            </TabItem>
-            <TabItem x:Name="tabItemRSTB" Header="RSTB">
-                <local:TabRSTB x:Name="tabRSTB" x:FieldModifier="public"/>
-            </TabItem>
         </TabControl>
         <Label x:Name="LabelStatus" Content="" Margin="10,0,215,10" Height="26" VerticalAlignment="Bottom"/>
         <Label x:Name="LabelVersion" Content="" Margin="0,0,10,10" HorizontalAlignment="Right" Width="200" Height="26" VerticalAlignment="Bottom" HorizontalContentAlignment="Right"/>

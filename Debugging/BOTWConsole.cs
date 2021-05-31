@@ -19,8 +19,9 @@ namespace BOTWToolset.Debugging
         static BOTWConsole()
         {
             var dashboard = Application.Current.Windows.OfType<Dashboard>().ToArray()[0];
-            var tabControl = dashboard.tabTSCB;
-            _console = tabControl.TSCBConsole;
+            // Get the TSCB control
+            var tabControl = Dashboard.toolsetTabs[0];
+            _console = ((Control.TabTSCB)tabControl).TSCBConsole;
 
             _status = dashboard.LabelStatus;
         }
