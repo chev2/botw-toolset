@@ -11,9 +11,12 @@ namespace BOTWToolset
     /// </summary>
     public partial class Dashboard : Window
     {
-        public static string VERSION = System.Diagnostics.FileVersionInfo.GetVersionInfo(Assembly.GetExecutingAssembly().Location).ProductVersion;
+        // Get the app version from the assembly info
+        public static readonly string VERSION = System.Diagnostics.FileVersionInfo.GetVersionInfo(Assembly.GetExecutingAssembly().Location).ProductVersion;
 
-        public static string UserDesktop = Environment.GetFolderPath(Environment.SpecialFolder.Desktop);
+        // Get the user's desktop path
+        public static readonly string UserDesktop = Environment.GetFolderPath(Environment.SpecialFolder.Desktop);
+
         // All tabs used in the toolset
         // Adding a new tool to the program requires its tab control to be added here
         public static readonly UserControl[] toolsetTabs = new UserControl[]
