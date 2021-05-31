@@ -412,7 +412,7 @@ namespace BOTWToolset.Control
                 if (float.TryParse(textSender.Text, out float overrideValue))
                 {
                     // Clamp value between 0 and 1
-                    overrideValue = MathExt.Clamp(overrideValue, 0.0f, 1.0f);
+                    overrideValue = Math.Clamp(overrideValue, 0.0f, 1.0f);
 
                     BOTWConsole.Log($"Overriding {textSender.Name} with value {overrideValue}");
 

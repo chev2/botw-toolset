@@ -23,10 +23,10 @@ namespace BOTWToolset.IO.TSCB
         public uint FileBaseOffset { get => _fileBaseOffset; set => _fileBaseOffset = value; }
         private uint _fileBaseOffset;
 
-        public float WorldScale { get => _worldScale; set => _worldScale = value.Clamp(0f, 800.0f); }
+        public float WorldScale { get => _worldScale; set => _worldScale = Math.Clamp(value, 0f, 800.0f); }
         private float _worldScale;
 
-        public float TerrainMaxHeight { get => _terrainMaxHeight; set => _terrainMaxHeight = value.Clamp(0f, 800.0f); }
+        public float TerrainMaxHeight { get => _terrainMaxHeight; set => _terrainMaxHeight = Math.Clamp(value, 0f, 800.0f); }
         private float _terrainMaxHeight;
 
         public byte[] MaterialInfoOffsets;
