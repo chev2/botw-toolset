@@ -39,7 +39,7 @@ namespace BOTWToolset.IO.SARC
         /// <summary>
         /// Gets a <see cref="SARC"/> from an array of bytes.
         /// </summary>
-        /// <param name="stream">Array of bytes to get <see cref="SARC"/> info from.</param>
+        /// <param name="bytes">Array of bytes to get <see cref="SARC"/> info from.</param>
         /// <returns><see cref="SARC"/> with the stream's data.</returns>
         public static SARC FromBytes(byte[] bytes)
         {
@@ -47,9 +47,10 @@ namespace BOTWToolset.IO.SARC
 
             using (var r = new BinaryReaderBig(new MemoryStream(bytes)))
             {
-                //SARC header
+                // SARC header
                 s.Magic = new string(r.ReadChars(4));
-                if (s.Magic != "SARC") // TODO: raise an exception here instead of returning null
+                if (s.Magic != "SARC")
+                    // TODO: raise an exception here instead of returning null
                     return null;
 
                 s.HeaderLength = r.ReadUInt16();
@@ -58,18 +59,20 @@ namespace BOTWToolset.IO.SARC
                 s.DataOffset = r.ReadUInt32();
                 s.Version = r.ReadUInt16();
 
-                r.Advance(2); // Skip 2 reserved bytes
+                // Skip 2 reserved bytes
+                r.Advance(2);
 
-                //SFAT header
+                // SFAT header
                 string sfat_magic = new string(r.ReadChars(4));
-                if (sfat_magic != "SFAT") // TODO: raise an exception here instead of returning null
+                if (sfat_magic != "SFAT")
+                    // TODO: raise an exception here instead of returning null
                     return null;
 
                 ushort sfat_headerlen = r.ReadUInt16();
                 ushort sfat_nodecount = r.ReadUInt16();
                 uint sfat_hashkey = r.ReadUInt32();
 
-                //SFAT nodes
+                // SFAT nodes
                 SFATNode[] sfat_nodes = new SFATNode[sfat_nodecount];
 
                 for (int i = 0; i < sfat_nodecount; i++)
@@ -93,9 +96,10 @@ namespace BOTWToolset.IO.SARC
                     Nodes = sfat_nodes
                 };
 
-                //SFNT header
+                // SFNT header
                 var sfnt_magic = new string(r.ReadChars(4));
-                if (sfnt_magic != "SFNT") // TODO: raise an exception here instead of returning null
+                if (sfnt_magic != "SFNT")
+                    // TODO: raise an exception here instead of returning null
                     return null;
                 var sfnt_headerlen = r.ReadUInt16();
 
@@ -116,7 +120,7 @@ namespace BOTWToolset.IO.SARC
                         // Remove the zeroes
                         byte[] bytes_filter = four_bytes.Where(x => x != 0).ToArray();
 
-                        //Add the valid characters
+                        // Add the valid characters
                         foreach (var byte_s in bytes_filter)
                         {
                             cur_string.Add(byte_s);
@@ -166,7 +170,6 @@ namespace BOTWToolset.IO.SARC
         /// <returns>byte[] containg the <see cref="SARC"/> data.</returns>
         public static byte[] ToBytes(SARC sarc)
         {
-            // TODO: Make this an actual function
             List<byte> bytes = new List<byte>();
 
             // SARC header
