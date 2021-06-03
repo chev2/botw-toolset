@@ -5,7 +5,7 @@
              xmlns:d="http://schemas.microsoft.com/expression/blend/2008" 
              xmlns:local="clr-namespace:BOTWToolset.Control"
              mc:Ignorable="d" 
-             d:DesignHeight="600" d:DesignWidth="1280" Width="Auto" Height="Auto" Loaded="UserControlLoaded">
+             d:DesignHeight="720" d:DesignWidth="1280" Width="Auto" Height="Auto" Loaded="UserControlLoaded">
     <UserControl.CommandBindings>
         <CommandBinding Command="Open" Executed="Menu_FileOpen"/>
         <CommandBinding Command="Save" Executed="Menu_FileSave"/>
