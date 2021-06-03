@@ -31,8 +31,6 @@ namespace BOTWToolset
         {
             InitializeComponent();
 
-            BOTWConsole.Log($"Breath of the Wild Toolkit - Version {VERSION}");
-
             LabelVersion.Content = $"Version v{VERSION}";
 
             // Initialize and add all tool tabs to the tab controller

@@ -86,8 +86,6 @@ namespace BOTWToolset.IO.TSCB
                 // Read mat info offsets
                 t.MaterialInfoOffsets = r.ReadBytes((int)((t.MaterialInfoLength * 4) + 4));
 
-                BOTWConsole.Log($"Offset before material iteration: {r.BaseStream.Position}");
-
                 // Initialize mat info array with provided length
                 t.MaterialInfo = new MaterialInfo[t.MaterialInfoLength];
 
@@ -105,12 +103,8 @@ namespace BOTWToolset.IO.TSCB
                     t.MaterialInfo[i] = matInfo;
                 }
 
-                BOTWConsole.Log($"Offset before area offset iteration: {r.BaseStream.Position}");
-
                 // Read area offsets
                 t.AreaArrayOffsets = r.ReadBytes((int)(t.AreaArrayLength * 4));
-
-                BOTWConsole.Log($"Offset before area iteration: {r.BaseStream.Position}");
 
                 t.AreaInfo = new AreaInfo[t.AreaArrayLength];
 
@@ -187,12 +181,8 @@ namespace BOTWToolset.IO.TSCB
                     t.AreaInfo[i] = areaInfo;
                 }
 
-                BOTWConsole.Log($"Offset after area iteration: {r.BaseStream.Position} (should be {t.FileBaseOffset + 16})");
-
                 //Get the number of filenames by getting how many bytes they take up out of the entire file size
                 var filenames_count = (r.BaseStream.Length - (t.FileBaseOffset + 16)) / 12;
-
-                BOTWConsole.Log($"Filename count: {filenames_count} (should be {t.AreaArrayLength})");
 
                 t.FileNames = new string[filenames_count];
 

@@ -106,8 +106,6 @@ namespace BOTWToolset.Control
 
         private void Menu_FileOpen(object sender, RoutedEventArgs e)
         {
-            BOTWConsole.Log("Clicked File -> Open button");
-
             var openFileDialog = new OpenFileDialog
             {
                 InitialDirectory = @"C:\",
@@ -120,8 +118,6 @@ namespace BOTWToolset.Control
 
             if ((bool)openFileDialog.ShowDialog())
             {
-                BOTWConsole.Log("Opening file");
-
                 SARC s = SARC.FromBytes(File.ReadAllBytes(openFileDialog.FileName));
 
                 // Set the current file location to the chosen file's location
@@ -142,8 +138,6 @@ namespace BOTWToolset.Control
 
         private void Menu_FileClose(object sender, RoutedEventArgs e)
         {
-            BOTWConsole.Log("Clicked File -> Close button");
-
             fileLocation = null;
 
             // Set the current TSCB info to nothing

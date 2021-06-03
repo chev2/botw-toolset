@@ -309,8 +309,6 @@ namespace BOTWToolset.Control
 
         private void Menu_FileOpen(object sender, ExecutedRoutedEventArgs e)
         {
-            BOTWConsole.Log("Clicked File -> Open button");
-
             var openFileDialog = new OpenFileDialog
             {
                 InitialDirectory = @"C:\",
@@ -325,8 +323,6 @@ namespace BOTWToolset.Control
             {
                 // This is to ensure that opening a file when one is already open resets everything in the tab
                 SetDisabled();
-
-                BOTWConsole.Log("Opening file");
 
                 TSCB t = TSCB.FromBytes(File.ReadAllBytes(openFileDialog.FileName));
 
@@ -359,8 +355,6 @@ namespace BOTWToolset.Control
 
         private void Menu_FileSave(object sender, ExecutedRoutedEventArgs e)
         {
-            BOTWConsole.Log("Clicked File -> Save button");
-
             File.WriteAllBytes(fileLocation, TSCB.ToBytes(currentTSCB));
 
             BOTWConsole.LogStatus($"Saved file to {fileLocation}.");
@@ -368,8 +362,6 @@ namespace BOTWToolset.Control
 
         private void Menu_FileSaveAs(object sender, ExecutedRoutedEventArgs e)
         {
-            BOTWConsole.Log("Clicked File -> Save As button");
-
             SaveFileDialog saveFileDialog = new SaveFileDialog
             {
                 InitialDirectory = @"C;\",
@@ -389,8 +381,6 @@ namespace BOTWToolset.Control
 
         private void Menu_FileClose(object sender, RoutedEventArgs e)
         {
-            BOTWConsole.Log("Clicked File -> Close button");
-
             // Set the current TSCB info to nothing
             currentTSCB = null;
 
@@ -414,7 +404,7 @@ namespace BOTWToolset.Control
                     // Clamp value between 0 and 1
                     overrideValue = Math.Clamp(overrideValue, 0.0f, 1.0f);
 
-                    BOTWConsole.Log($"Overriding {textSender.Name} with value {overrideValue}");
+                    BOTWConsole.LogStatus($"Overriding {textSender.Name} with value {overrideValue}");
 
                     switch (textSender.Name)
                     {
