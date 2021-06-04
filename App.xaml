@@ -101,15 +101,16 @@
         <Style TargetType="{x:Type Menu}">
             <Setter Property="Background" Value="{StaticResource BGTone2}"/>
             <Setter Property="Foreground" Value="White"/>
+            <Setter Property="FontSize" Value="14"/>
         </Style>
         <Style TargetType="{x:Type MenuItem}">
-            <Setter Property="Foreground" Value="#FF212121"/>
             <Setter Property="BorderThickness" Value="0"/>
         </Style>
         <Style TargetType="{x:Type TextBox}">
             <Setter Property="Background" Value="Transparent"/>
             <Setter Property="Foreground" Value="White"/>
             <Setter Property="BorderBrush" Value="{StaticResource BorderGray}"/>
+            <Setter Property="CaretBrush" Value="White"/>
         </Style>
         <Style TargetType="{x:Type Border}">
             <Setter Property="BorderBrush" Value="{StaticResource BorderGray}"/>
@@ -124,6 +125,46 @@
         </Style>
         <Style TargetType="{x:Type CheckBox}">
             <Setter Property="Foreground" Value="White"/>
+        </Style>
+
+        <Style x:Key="MenuItemPopup" TargetType="{x:Type MenuItem}">
+            <Setter Property="Template">
+                <Setter.Value>
+                    <ControlTemplate TargetType="{x:Type MenuItem}">
+                        <Grid SnapsToDevicePixels="True">
+                            <DockPanel x:Name="MenuItemDockPanel">
+                                <!--<ContentPresenter x:Name="Icon" ContentSource="Icon" Margin="0,0,0,0" SnapsToDevicePixels="{TemplateBinding SnapsToDevicePixels}" VerticalAlignment="Center"/>
+                                <Path x:Name="GlyphPanel" Fill="{TemplateBinding Foreground}" FlowDirection="LeftToRight" Margin="7,0,0,0" Visibility="Collapsed" VerticalAlignment="Center"/>-->
+                                <ContentPresenter x:Name="Content"
+                                                  ContentSource="Header"
+                                                  Margin="{TemplateBinding Padding}"
+                                                  RecognizesAccessKey="True"
+                                                  SnapsToDevicePixels="{TemplateBinding SnapsToDevicePixels}"
+                                                  TextBlock.Foreground="White"/>
+                            </DockPanel>
+                            <Popup x:Name="PART_Popup" AllowsTransparency="true" Focusable="false" HorizontalOffset="1" IsOpen="{Binding IsSubmenuOpen, RelativeSource={RelativeSource TemplatedParent}}" PopupAnimation="{DynamicResource {x:Static SystemParameters.MenuPopupAnimationKey}}" Placement="Bottom" VerticalOffset="-1">
+                                <Border BorderThickness="0" Background="{StaticResource BGTone3}">
+                                    <ScrollViewer x:Name="SubMenuScrollViewer" CanContentScroll="true" Style="{DynamicResource {ComponentResourceKey ResourceId=MenuScrollViewer, TypeInTargetAssembly={x:Type FrameworkElement}}}">
+                                        <Grid RenderOptions.ClearTypeHint="Enabled">
+                                            <ItemsPresenter x:Name="ItemsPresenter"
+                                                            KeyboardNavigation.DirectionalNavigation="Cycle"
+                                                            Grid.IsSharedSizeScope="true"
+                                                            Margin="2"
+                                                            SnapsToDevicePixels="{TemplateBinding SnapsToDevicePixels}"
+                                                            KeyboardNavigation.TabNavigation="Cycle"/>
+                                        </Grid>
+                                    </ScrollViewer>
+                                </Border>
+                            </Popup>
+                        </Grid>
+                        <ControlTemplate.Triggers>
+                            <Trigger Property="IsMouseOver" Value="True">
+                                <Setter TargetName="MenuItemDockPanel" Property="Background" Value="#11FFFFFF"/>
+                            </Trigger>
+                        </ControlTemplate.Triggers>
+                    </ControlTemplate>
+                </Setter.Value>
+            </Setter>
         </Style>
     </Application.Resources>
 </Application>
