@@ -1,5 +1,4 @@
-﻿using BOTWToolset.Debugging;
-using System;
+﻿using System;
 using System.Reflection;
 using System.Windows;
 using System.Windows.Controls;
@@ -37,12 +36,13 @@ namespace BOTWToolset
             foreach (UserControl tab in toolsetTabs)
             {
                 // Initialize the new tab
-                TabItem tabItem = new TabItem();
-
-                // Set the tab's content to whatever the tool's control is
-                tabItem.Content = tab;
-                // Give the header (tab name) a proper name based off its class name
-                tabItem.Header = tab.GetType().Name.Replace("Tab", "");
+                TabItem tabItem = new TabItem
+                {
+                    // Set the tab's content to whatever the tool's control is
+                    Content = tab,
+                    // Give the header (tab name) a proper name based off its class name
+                    Header = tab.GetType().Name.Replace("Tab", "")
+                };
 
                 TabController.Items.Add(tabItem);
             }
