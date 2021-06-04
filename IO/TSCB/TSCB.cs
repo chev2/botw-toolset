@@ -122,8 +122,9 @@ namespace BOTWToolset.IO.TSCB
                     float max_water_height = r.ReadSingle();
                     uint unk_1 = r.ReadUInt32();
 
+                    // If this unknown is equal to 0, skip the extra byte coming after it
                     if (unk_1 == 0)
-                    { // If this unknown is equal to 0, skip the extra byte coming after it
+                    {
                         uint next_val = r.ReadUInt32();
 
                         if (next_val != 1) // If the next value isn't extra unneeded info
@@ -154,26 +155,31 @@ namespace BOTWToolset.IO.TSCB
                         Offset = offset
                     };
 
-                    areaInfo.ExtraInfoLength = r.ReadUInt32(); //Usually 0, 4, or 8
+                    // Usually 0, 4, or 8
+                    areaInfo.ExtraInfoLength = r.ReadUInt32();
 
                     if (ref_extra == 4)
                     {
+                        // Skip the extra "20" after the 8, as well as the extra info
                         if (areaInfo.ExtraInfoLength == 8)
-                        { //Skip the extra "20" after the 8, as well as the extra info
+                        {
                             areaInfo.HasGrass = true;
                             areaInfo.HasWater = true;
                             r.Advance(36);
                         }
-                        else //If the length is 4
+                        // If the length is 4
+                        else
                         {
                             var areabytes = r.ReadBytes(16).ToArray();
-                            if (areabytes[7] == 0) //If byte 7 equals 0
+                            // If byte 7 equals 0
+                            if (areabytes[7] == 0)
                                 areaInfo.HasGrass = true;
-                            else //Else if the 2nd byte should be anything else (should always be 1)
+                            // Else if the 2nd byte should be anything else (should always be 1)
+                            else
                                 areaInfo.HasWater = true;
                         }
                     }
-                    else //If the extra info flags aren't set, go back 4
+                    else // If the extra info flags aren't set, go back 4
                     {
                         r.Advance(-4);
                     }
@@ -181,12 +187,13 @@ namespace BOTWToolset.IO.TSCB
                     t.AreaInfo[i] = areaInfo;
                 }
 
-                //Get the number of filenames by getting how many bytes they take up out of the entire file size
+                // Get the number of filenames by getting how many bytes they take up out of the entire file size
                 var filenames_count = (r.BaseStream.Length - (t.FileBaseOffset + 16)) / 12;
 
                 t.FileNames = new string[filenames_count];
 
-                r.BaseStream.Seek(t.FileBaseOffset + 16, SeekOrigin.Begin); // TODO: change this to 'current' later, or maybe even remove
+                // TODO: change this to 'current' later, or maybe even remove
+                r.BaseStream.Seek(t.FileBaseOffset + 16, SeekOrigin.Begin);
 
                 for (int i = 0; i < filenames_count; i++)
                 {
