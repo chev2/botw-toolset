@@ -1,8 +1,6 @@
-﻿using System;
-using System.Linq;
+﻿using System.Linq;
 using System.Windows;
 using System.Windows.Controls;
-using System.Windows.Threading;
 
 namespace BOTWToolset.Debugging
 {
@@ -11,51 +9,48 @@ namespace BOTWToolset.Debugging
     /// </summary>
     static class BOTWConsole
     {
-        private readonly static TextBox _console;
-        private readonly static Label _status;
+        private static readonly Label _status;
 
-        private static DispatcherTimer ClearStatusTimer;
+        // Timer which automatically clears the status bar - currently unused
+        //private static DispatcherTimer ClearStatusTimer;
 
         static BOTWConsole()
         {
             var dashboard = Application.Current.Windows.OfType<Dashboard>().ToArray()[0];
-            // Get the TSCB control
-            var tabControl = Dashboard.toolsetTabs[0];
-            _console = ((Control.TabTSCB)tabControl).TSCBConsole;
 
             _status = dashboard.LabelStatus;
         }
 
-        public static void Log(object text)
+        /// <summary>
+        /// Sets the status bar text.
+        /// </summary>
+        /// <param name="text">The text to display.</param>
+        public static void LogStatus(object text)
         {
-            _console.Text += text.ToString() + "\n";
-            _console.ScrollToEnd(); // After adding the new text, scroll to the end
-        }
+            /*if (ClearStatusTimer != null)
+                ClearStatusTimer.Stop();*/
 
+            _status.Content = text.ToString();
+
+            /*ClearStatusTimer = new DispatcherTimer();
+            ClearStatusTimer.Tick += (src, e) => { ClearStatus(); };
+            ClearStatusTimer.Interval = new TimeSpan(0, 0, 4);
+            ClearStatusTimer.Start();*/
+        }
         public static void LogWarning(object text)
         {
-            Log("[Warning]" + text);
+            LogStatus("[Warning]" + text);
         }
 
         public static void LogError(object text)
         {
-            Log("[ERROR]" + text);
+            LogStatus("[ERROR]" + text);
         }
 
-        public static void LogStatus(object text)
-        {
-            if (ClearStatusTimer != null)
-                ClearStatusTimer.Stop();
-
-            _status.Content = text.ToString();
-
-            ClearStatusTimer = new DispatcherTimer();
-            ClearStatusTimer.Tick += ClearStatus;
-            ClearStatusTimer.Interval = new TimeSpan(0, 0, 4);
-            ClearStatusTimer.Start();
-        }
-
-        public static void ClearStatus(object src, EventArgs e)
+        /// <summary>
+        /// Clears the status bar text.
+        /// </summary>
+        public static void ClearStatus()
         {
             _status.Content = "";
         }
