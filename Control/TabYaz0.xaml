@@ -5,12 +5,12 @@
              xmlns:d="http://schemas.microsoft.com/expression/blend/2008" 
              xmlns:local="clr-namespace:BOTWToolset.Control"
              mc:Ignorable="d" 
-             d:DesignHeight="720" d:DesignWidth="1280" Width="Auto" Height="Auto" >
+             d:DesignHeight="720" d:DesignWidth="1280" Width="Auto" Height="Auto">
     <Grid>
         <Label Content="Yaz0 Encoder/Decoder" Margin="10,10,10,0" VerticalAlignment="Top" Height="48" FontSize="28" VerticalContentAlignment="Center" FontFamily="Segoe UI Light"/>
 
         <Menu Margin="10,58,10,0" VerticalAlignment="Top">
-            <MenuItem Header="_File" Foreground="White">
+            <MenuItem Header="_File" Style="{StaticResource MenuItemPopup}">
                 <MenuItem x:Name="MenuFileDecodeFile" Header="_Decode File" InputGestureText="Ctrl+D" Click="Menu_FileDecode"/>
                 <MenuItem x:Name="MenuFileEncodeFile" Header="_Encode File" InputGestureText="Ctrl+E" Click="Menu_FileEncode"/>
             </MenuItem>

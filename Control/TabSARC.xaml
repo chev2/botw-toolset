@@ -10,7 +10,7 @@
         <Label Content="SARC Packer/Extractor" Margin="10,10,10,0" VerticalAlignment="Top" Height="48" FontSize="28" VerticalContentAlignment="Center" FontFamily="Segoe UI Light"/>
 
         <Menu Margin="10,58,10,0" VerticalAlignment="Top">
-            <MenuItem Header="_File" Foreground="White">
+            <MenuItem Header="_File" Style="{StaticResource MenuItemPopup}">
                 <MenuItem x:Name="MenuFileOpen" Header="_Open" InputGestureText="Ctrl+O" Click="Menu_FileOpen"/>
                 <MenuItem x:Name="MenuFileSave" Header="_Save" InputGestureText="Ctrl+S" Click="Menu_FileSave" IsEnabled="False"/>
                 <MenuItem x:Name="MenuFileSaveAs" Header="_Save As" InputGestureText="Ctrl+Shift+S" Click="Menu_FileSaveAs" IsEnabled="False"/>
