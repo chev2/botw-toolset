@@ -125,43 +125,5 @@ namespace BOTWToolset.Control
                 }
             }
         }
-
-        /*private void Menu_FileOpen(object sender, RoutedEventArgs e)
-        {
-            BOTWConsole.Log("Clicked File -> Open button");
-
-            var openFileDialog = new OpenFileDialog
-            {
-                InitialDirectory = @"C:\",
-                RestoreDirectory = true,
-                Title = "Select Yaz0 file",
-                DefaultExt = "yaz0",
-                Filter = "All Files (*.*)|*.*",
-                CheckFileExists = true
-            };
-
-            if ((bool)openFileDialog.ShowDialog())
-            {
-                // This is to ensure that opening a file when one is already open resets everything in the tab
-                SetDisabled();
-
-                BOTWConsole.Log("Opening file");
-
-                Yaz0 y = Yaz0.ReadFile(openFileDialog.FileName);
-
-                // Set the current file location to the chosen file's location
-                fileLocation = openFileDialog.FileName;
-
-                currentYaz0 = y;
-
-                // Set UI sidebar to have header info, enable controls
-                SetEnabled(y);
-
-                // Allow the file to be saved
-                MenuFileClose.IsEnabled = true;
-                MenuFileSave.IsEnabled = true;
-                MenuFileSaveAs.IsEnabled = true;
-            }
-        }*/
     }
 }
